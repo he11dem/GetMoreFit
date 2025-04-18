@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9714b6632055448abc698bd341b636dd" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="FitnessAppModel.Articles" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.ClientProgress" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Clients" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.DietPlans" Width="1.5" PointX="5.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Equipment" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Exercises" Width="1.5" PointX="6" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.GroupWorkouts" Width="1.5" PointX="5.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Meals" Width="1.5" PointX="7.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Messages" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Payments" Width="1.5" PointX="8.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.RecoveryPlans" Width="1.5" PointX="5.25" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Reports" Width="1.5" PointX="8.25" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Reviews" Width="1.5" PointX="11.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Settings" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.SyncData" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Trainers" Width="1.5" PointX="0.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.WorkoutExercises" Width="1.5" PointX="8.25" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.WorkoutPlans" Width="1.5" PointX="8.25" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessAppModel.Workouts" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
+        <AssociationConnector Association="FitnessAppModel.FK__Articles__author__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__ClientPro__clien__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__Clients__trainer__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__DietPlans__clien__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__Payments__client__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__RecoveryP__clien__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__Reports__client___68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__Reviews__client___7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__WorkoutPl__clien__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__Meals__diet_id__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__WorkoutEx__exerc__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__GroupWork__train__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__GroupWork__worko__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__Payments__traine__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__Reports__trainer__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__Reviews__trainer__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__Workouts__traine__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__WorkoutEx__worko__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.FK__WorkoutPl__worko__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessAppModel.GroupMembers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
