@@ -4,557 +4,522 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище FitnessAppModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Articles">
-          <Key>
-            <PropertyRef Name="article_id" />
-          </Key>
-          <Property Name="article_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="content" Type="text" Nullable="false" />
-          <Property Name="author_id" Type="int" />
-        </EntityType>
+      <Schema Namespace="Хранилище FitnessGetMoreFitModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ClientProgress">
           <Key>
-            <PropertyRef Name="progress_id" />
+            <PropertyRef Name="IDProgress" />
           </Key>
-          <Property Name="progress_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="client_id" Type="int" />
-          <Property Name="date" Type="date" Nullable="false" />
-          <Property Name="weight" Type="float" />
-          <Property Name="measurements" Type="nvarchar(max)" />
-          <Property Name="strength" Type="float" />
-          <Property Name="endurance" Type="float" />
+          <Property Name="IDProgress" Type="int" Nullable="false" />
+          <Property Name="IDClient" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Weight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Chest" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Waist" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Hips" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
-            <PropertyRef Name="client_id" />
+            <PropertyRef Name="IDClient" />
           </Key>
-          <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="age" Type="int" />
-          <Property Name="weight" Type="float" />
-          <Property Name="height" Type="float" />
-          <Property Name="goal" Type="text" />
-          <Property Name="trainer_id" Type="int" />
-        </EntityType>
-        <EntityType Name="DietPlans">
-          <Key>
-            <PropertyRef Name="diet_id" />
-          </Key>
-          <Property Name="diet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="client_id" Type="int" />
-          <Property Name="calories" Type="int" />
-          <Property Name="macronutrients" Type="nvarchar(max)" />
-          <Property Name="description" Type="text" />
+          <Property Name="IDClient" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Weight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Height" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RegistrationDate" Type="date" />
+          <Property Name="Goal" Type="text" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
-            <PropertyRef Name="equipment_id" />
+            <PropertyRef Name="IDEquipment" />
           </Key>
-          <Property Name="equipment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="description" Type="text" />
-          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="IDEquipment" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="IDStatusEquip" Type="int" />
         </EntityType>
-        <EntityType Name="Exercises">
+        <EntityType Name="Exericses">
           <Key>
-            <PropertyRef Name="exercise_id" />
+            <PropertyRef Name="IDExercises" />
           </Key>
-          <Property Name="exercise_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="description" Type="text" />
-          <Property Name="video_url" Type="varchar" MaxLength="255" />
-          <Property Name="muscle_group" Type="varchar" MaxLength="50" />
+          <Property Name="IDExercises" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="text" />
+          <Property Name="IDMuscleType" Type="int" />
+          <Property Name="Photo" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="GroupMembers">
+        <EntityType Name="Goals">
           <Key>
-            <PropertyRef Name="group_id" />
-            <PropertyRef Name="client_id" />
+            <PropertyRef Name="IDGoals" />
           </Key>
-          <Property Name="group_id" Type="int" Nullable="false" />
-          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="IDGoals" Type="int" Nullable="false" />
+          <Property Name="IDClient" Type="int" />
+          <Property Name="TargetWieght" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TargetDate" Type="date" />
+          <Property Name="IDStatusGoals" Type="int" />
         </EntityType>
-        <EntityType Name="GroupWorkouts">
+        <EntityType Name="Group_Trainings">
           <Key>
-            <PropertyRef Name="group_id" />
+            <PropertyRef Name="IDGroup" />
           </Key>
-          <Property Name="group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="trainer_id" Type="int" />
-          <Property Name="workout_id" Type="int" />
-          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="IDGroup" Type="int" Nullable="false" />
+          <Property Name="IDTrainer" Type="int" />
+          <Property Name="IDWorkout" Type="int" />
+          <Property Name="MaxParticipants" Type="int" />
+          <Property Name="CurrentParticipants" Type="int" />
         </EntityType>
-        <EntityType Name="Meals">
+        <EntityType Name="GroupParticipants">
           <Key>
-            <PropertyRef Name="meal_id" />
+            <PropertyRef Name="IDParticipant" />
           </Key>
-          <Property Name="meal_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="diet_id" Type="int" />
-          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="description" Type="text" />
+          <Property Name="IDParticipant" Type="int" Nullable="false" />
+          <Property Name="IDGroup" Type="int" />
+          <Property Name="IDClient" Type="int" />
         </EntityType>
-        <EntityType Name="Messages">
+        <EntityType Name="MuslceType">
           <Key>
-            <PropertyRef Name="message_id" />
+            <PropertyRef Name="IDMuscleType" />
           </Key>
-          <Property Name="message_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sender_id" Type="int" Nullable="false" />
-          <Property Name="receiver_id" Type="int" Nullable="false" />
-          <Property Name="content" Type="text" Nullable="false" />
-          <Property Name="timestamp" Type="datetime" />
+          <Property Name="IDMuscleType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Payments">
+        <EntityType Name="NutritionPlans">
           <Key>
-            <PropertyRef Name="payment_id" />
+            <PropertyRef Name="IDPlan" />
           </Key>
-          <Property Name="payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="client_id" Type="int" />
-          <Property Name="trainer_id" Type="int" />
-          <Property Name="amount" Type="float" Nullable="false" />
-          <Property Name="date" Type="date" Nullable="false" />
-          <Property Name="status" Type="varchar" MaxLength="20" />
-        </EntityType>
-        <EntityType Name="RecoveryPlans">
-          <Key>
-            <PropertyRef Name="recovery_id" />
-          </Key>
-          <Property Name="recovery_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="client_id" Type="int" />
-          <Property Name="description" Type="text" />
-          <Property Name="sleep_tracker" Type="nvarchar(max)" />
-          <Property Name="stretching_exercises" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="Reports">
-          <Key>
-            <PropertyRef Name="report_id" />
-          </Key>
-          <Property Name="report_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="client_id" Type="int" />
-          <Property Name="trainer_id" Type="int" />
-          <Property Name="date" Type="date" Nullable="false" />
-          <Property Name="content" Type="text" />
+          <Property Name="IDPlan" Type="int" Nullable="false" />
+          <Property Name="IDClient" Type="int" />
+          <Property Name="CaloriesPerDay" Type="int" />
+          <Property Name="Proteint" Type="int" />
+          <Property Name="Carbs" Type="int" />
+          <Property Name="Fats" Type="int" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
         </EntityType>
         <EntityType Name="Reviews">
           <Key>
-            <PropertyRef Name="review_id" />
+            <PropertyRef Name="IDReview" />
           </Key>
-          <Property Name="review_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="client_id" Type="int" />
-          <Property Name="trainer_id" Type="int" />
-          <Property Name="rating" Type="int" />
-          <Property Name="comment" Type="text" />
+          <Property Name="IDReview" Type="int" Nullable="false" />
+          <Property Name="IDCleint" Type="int" />
+          <Property Name="IDTrainer" Type="int" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="Comment" Type="text" />
+          <Property Name="RewievDate" Type="date" />
         </EntityType>
-        <EntityType Name="Settings">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="setting_id" />
+            <PropertyRef Name="IDRole" />
           </Key>
-          <Property Name="setting_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="theme" Type="varchar" MaxLength="50" />
-          <Property Name="notifications" Type="bit" />
+          <Property Name="IDRole" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="SyncData">
+        <EntityType Name="Specialization">
           <Key>
-            <PropertyRef Name="sync_id" />
+            <PropertyRef Name="IDSpec" />
           </Key>
-          <Property Name="sync_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="last_sync" Type="datetime" />
+          <Property Name="IDSpec" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StatusEquipment">
+          <Key>
+            <PropertyRef Name="IDStatusEquip" />
+          </Key>
+          <Property Name="IDStatusEquip" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="StatusGoals">
+          <Key>
+            <PropertyRef Name="IDStatusGoals" />
+          </Key>
+          <Property Name="IDStatusGoals" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Trainers">
           <Key>
-            <PropertyRef Name="trainer_id" />
+            <PropertyRef Name="IDTrainers" />
           </Key>
-          <Property Name="trainer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="specialization" Type="varchar" MaxLength="100" />
-          <Property Name="schedule" Type="nvarchar(max)" />
+          <Property Name="IDTrainers" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="LastName" Type="varchar(max)" />
+          <Property Name="IDSpec" Type="int" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="varchar(max)" />
         </EntityType>
-        <EntityType Name="WorkoutExercises">
+        <EntityType Name="TypeWorkouts">
           <Key>
-            <PropertyRef Name="workout_id" />
-            <PropertyRef Name="exercise_id" />
+            <PropertyRef Name="IDType" />
           </Key>
-          <Property Name="workout_id" Type="int" Nullable="false" />
-          <Property Name="exercise_id" Type="int" Nullable="false" />
-          <Property Name="sets" Type="int" />
-          <Property Name="reps" Type="int" />
+          <Property Name="IDType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="WorkoutPlans">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="plan_id" />
+            <PropertyRef Name="IDUser" />
           </Key>
-          <Property Name="plan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="client_id" Type="int" />
-          <Property Name="workout_id" Type="int" />
-          <Property Name="date" Type="date" Nullable="false" />
-          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="IDUser" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="IDRole" Type="int" />
+        </EntityType>
+        <EntityType Name="WorkoutExericises">
+          <Key>
+            <PropertyRef Name="IDWorkoutExericses" />
+          </Key>
+          <Property Name="IDWorkoutExericses" Type="int" Nullable="false" />
+          <Property Name="IDWorkout" Type="int" />
+          <Property Name="IDExercises" Type="int" />
+          <Property Name="Sets" Type="int" />
+          <Property Name="Reps" Type="int" />
+          <Property Name="WeightUsed" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Workouts">
           <Key>
-            <PropertyRef Name="workout_id" />
+            <PropertyRef Name="IDWorkout" />
           </Key>
-          <Property Name="workout_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="description" Type="text" />
-          <Property Name="type" Type="varchar" MaxLength="20" />
-          <Property Name="trainer_id" Type="int" />
+          <Property Name="IDWorkout" Type="int" Nullable="false" />
+          <Property Name="IDClient" Type="int" />
+          <Property Name="IDTrainers" Type="int" />
+          <Property Name="DateWorkout" Type="datetime" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="IDType" Type="int" />
+          <Property Name="Notes" Type="text" />
         </EntityType>
-        <Association Name="FK__Articles__author__00200768">
-          <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
-          <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
-            </Principal>
-            <Dependent Role="Articles">
-              <PropertyRef Name="author_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ClientPro__clien__4E88ABD4">
+        <Association Name="FK_ClientProgress_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
           <End Role="ClientProgress" Type="Self.ClientProgress" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
             <Dependent Role="ClientProgress">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Clients__trainer__4BAC3F29">
-          <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
-          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+        <Association Name="FK_Equipment_StatusEquipment">
+          <End Role="StatusEquipment" Type="Self.StatusEquipment" Multiplicity="0..1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
+            <Principal Role="StatusEquipment">
+              <PropertyRef Name="IDStatusEquip" />
             </Principal>
-            <Dependent Role="Clients">
-              <PropertyRef Name="trainer_id" />
+            <Dependent Role="Equipment">
+              <PropertyRef Name="IDStatusEquip" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DietPlans__clien__628FA481">
+        <Association Name="FK_Exericses_MuslceType">
+          <End Role="MuslceType" Type="Self.MuslceType" Multiplicity="0..1" />
+          <End Role="Exericses" Type="Self.Exericses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MuslceType">
+              <PropertyRef Name="IDMuscleType" />
+            </Principal>
+            <Dependent Role="Exericses">
+              <PropertyRef Name="IDMuscleType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goals_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="DietPlans" Type="Self.DietPlans" Multiplicity="*" />
+          <End Role="Goals" Type="Self.Goals" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
-            <Dependent Role="DietPlans">
-              <PropertyRef Name="client_id" />
+            <Dependent Role="Goals">
+              <PropertyRef Name="IDClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GroupMemb__clien__787EE5A0">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
-          <End Role="GroupMembers" Type="Self.GroupMembers" Multiplicity="*" />
+        <Association Name="FK_Goals_StatusGoals">
+          <End Role="StatusGoals" Type="Self.StatusGoals" Multiplicity="0..1" />
+          <End Role="Goals" Type="Self.Goals" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+            <Principal Role="StatusGoals">
+              <PropertyRef Name="IDStatusGoals" />
             </Principal>
-            <Dependent Role="GroupMembers">
-              <PropertyRef Name="client_id" />
+            <Dependent Role="Goals">
+              <PropertyRef Name="IDStatusGoals" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GroupMemb__group__778AC167">
-          <End Role="GroupWorkouts" Type="Self.GroupWorkouts" Multiplicity="1" />
-          <End Role="GroupMembers" Type="Self.GroupMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GroupWorkouts">
-              <PropertyRef Name="group_id" />
-            </Principal>
-            <Dependent Role="GroupMembers">
-              <PropertyRef Name="group_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__GroupWork__train__73BA3083">
+        <Association Name="FK_Group_Trainings_Trainers">
           <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
-          <End Role="GroupWorkouts" Type="Self.GroupWorkouts" Multiplicity="*" />
+          <End Role="Group_Trainings" Type="Self.Group_Trainings" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
+              <PropertyRef Name="IDTrainers" />
             </Principal>
-            <Dependent Role="GroupWorkouts">
-              <PropertyRef Name="trainer_id" />
+            <Dependent Role="Group_Trainings">
+              <PropertyRef Name="IDTrainer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GroupWork__worko__74AE54BC">
+        <Association Name="FK_Group_Trainings_Workouts">
           <End Role="Workouts" Type="Self.Workouts" Multiplicity="0..1" />
-          <End Role="GroupWorkouts" Type="Self.GroupWorkouts" Multiplicity="*" />
+          <End Role="Group_Trainings" Type="Self.Group_Trainings" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workouts">
-              <PropertyRef Name="workout_id" />
+              <PropertyRef Name="IDWorkout" />
             </Principal>
-            <Dependent Role="GroupWorkouts">
-              <PropertyRef Name="workout_id" />
+            <Dependent Role="Group_Trainings">
+              <PropertyRef Name="IDWorkout" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Meals__diet_id__656C112C">
-          <End Role="DietPlans" Type="Self.DietPlans" Multiplicity="0..1" />
-          <End Role="Meals" Type="Self.Meals" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DietPlans">
-              <PropertyRef Name="diet_id" />
-            </Principal>
-            <Dependent Role="Meals">
-              <PropertyRef Name="diet_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Payments__client__6EF57B66">
+        <Association Name="FK_GroupParticipants_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <End Role="GroupParticipants" Type="Self.GroupParticipants" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
-            <Dependent Role="Payments">
-              <PropertyRef Name="client_id" />
+            <Dependent Role="GroupParticipants">
+              <PropertyRef Name="IDClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payments__traine__6FE99F9F">
-          <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
-          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+        <Association Name="FK_GroupParticipants_Group_Trainings">
+          <End Role="Group_Trainings" Type="Self.Group_Trainings" Multiplicity="0..1" />
+          <End Role="GroupParticipants" Type="Self.GroupParticipants" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
+            <Principal Role="Group_Trainings">
+              <PropertyRef Name="IDGroup" />
             </Principal>
-            <Dependent Role="Payments">
-              <PropertyRef Name="trainer_id" />
+            <Dependent Role="GroupParticipants">
+              <PropertyRef Name="IDGroup" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RecoveryP__clien__02FC7413">
+        <Association Name="FK_NutritionPlans_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="RecoveryPlans" Type="Self.RecoveryPlans" Multiplicity="*" />
+          <End Role="NutritionPlans" Type="Self.NutritionPlans" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
-            <Dependent Role="RecoveryPlans">
-              <PropertyRef Name="client_id" />
+            <Dependent Role="NutritionPlans">
+              <PropertyRef Name="IDClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reports__client___68487DD7">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
-            </Principal>
-            <Dependent Role="Reports">
-              <PropertyRef Name="client_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reports__trainer__693CA210">
-          <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
-          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
-            </Principal>
-            <Dependent Role="Reports">
-              <PropertyRef Name="trainer_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reviews__client___7B5B524B">
+        <Association Name="FK_Reviews_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
           <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
             <Dependent Role="Reviews">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDCleint" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reviews__trainer__7C4F7684">
+        <Association Name="FK_Reviews_Trainers">
           <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
           <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
+              <PropertyRef Name="IDTrainers" />
             </Principal>
             <Dependent Role="Reviews">
-              <PropertyRef Name="trainer_id" />
+              <PropertyRef Name="IDTrainer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WorkoutEx__exerc__5812160E">
-          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
-          <End Role="WorkoutExercises" Type="Self.WorkoutExercises" Multiplicity="*" />
+        <Association Name="FK_Trainers_Specialization">
+          <End Role="Specialization" Type="Self.Specialization" Multiplicity="0..1" />
+          <End Role="Trainers" Type="Self.Trainers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Exercises">
-              <PropertyRef Name="exercise_id" />
+            <Principal Role="Specialization">
+              <PropertyRef Name="IDSpec" />
             </Principal>
-            <Dependent Role="WorkoutExercises">
-              <PropertyRef Name="exercise_id" />
+            <Dependent Role="Trainers">
+              <PropertyRef Name="IDSpec" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WorkoutEx__worko__571DF1D5">
-          <End Role="Workouts" Type="Self.Workouts" Multiplicity="1" />
-          <End Role="WorkoutExercises" Type="Self.WorkoutExercises" Multiplicity="*" />
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IDRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IDRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkoutExericises_Exericses">
+          <End Role="Exericses" Type="Self.Exericses" Multiplicity="0..1" />
+          <End Role="WorkoutExericises" Type="Self.WorkoutExericises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exericses">
+              <PropertyRef Name="IDExercises" />
+            </Principal>
+            <Dependent Role="WorkoutExericises">
+              <PropertyRef Name="IDExercises" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkoutExericises_Workouts">
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="0..1" />
+          <End Role="WorkoutExericises" Type="Self.WorkoutExericises" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workouts">
-              <PropertyRef Name="workout_id" />
+              <PropertyRef Name="IDWorkout" />
             </Principal>
-            <Dependent Role="WorkoutExercises">
-              <PropertyRef Name="workout_id" />
+            <Dependent Role="WorkoutExericises">
+              <PropertyRef Name="IDWorkout" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WorkoutPl__clien__5AEE82B9">
+        <Association Name="FK_Workouts_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="WorkoutPlans" Type="Self.WorkoutPlans" Multiplicity="*" />
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
-            <Dependent Role="WorkoutPlans">
-              <PropertyRef Name="client_id" />
+            <Dependent Role="Workouts">
+              <PropertyRef Name="IDClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WorkoutPl__worko__5BE2A6F2">
-          <End Role="Workouts" Type="Self.Workouts" Multiplicity="0..1" />
-          <End Role="WorkoutPlans" Type="Self.WorkoutPlans" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Workouts">
-              <PropertyRef Name="workout_id" />
-            </Principal>
-            <Dependent Role="WorkoutPlans">
-              <PropertyRef Name="workout_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Workouts__traine__52593CB8">
+        <Association Name="FK_Workouts_Trainers">
           <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
           <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
+              <PropertyRef Name="IDTrainers" />
             </Principal>
             <Dependent Role="Workouts">
-              <PropertyRef Name="trainer_id" />
+              <PropertyRef Name="IDTrainers" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище FitnessAppModelContainer">
-          <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
+        <Association Name="FK_Workouts_TypeWorkouts">
+          <End Role="TypeWorkouts" Type="Self.TypeWorkouts" Multiplicity="0..1" />
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeWorkouts">
+              <PropertyRef Name="IDType" />
+            </Principal>
+            <Dependent Role="Workouts">
+              <PropertyRef Name="IDType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FitnessGetMoreFitModelContainer">
           <EntitySet Name="ClientProgress" EntityType="Self.ClientProgress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DietPlans" EntityType="Self.DietPlans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Exercises" EntityType="Self.Exercises" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GroupMembers" EntityType="Self.GroupMembers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GroupWorkouts" EntityType="Self.GroupWorkouts" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Meals" EntityType="Self.Meals" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RecoveryPlans" EntityType="Self.RecoveryPlans" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exericses" EntityType="Self.Exericses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goals" EntityType="Self.Goals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group_Trainings" EntityType="Self.Group_Trainings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupParticipants" EntityType="Self.GroupParticipants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MuslceType" EntityType="Self.MuslceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NutritionPlans" EntityType="Self.NutritionPlans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SyncData" EntityType="Self.SyncData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusEquipment" EntityType="Self.StatusEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusGoals" EntityType="Self.StatusGoals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trainers" EntityType="Self.Trainers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WorkoutExercises" EntityType="Self.WorkoutExercises" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WorkoutPlans" EntityType="Self.WorkoutPlans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeWorkouts" EntityType="Self.TypeWorkouts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkoutExericises" EntityType="Self.WorkoutExericises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workouts" EntityType="Self.Workouts" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Articles__author__00200768" Association="Self.FK__Articles__author__00200768">
-            <End Role="Trainers" EntitySet="Trainers" />
-            <End Role="Articles" EntitySet="Articles" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ClientPro__clien__4E88ABD4" Association="Self.FK__ClientPro__clien__4E88ABD4">
+          <AssociationSet Name="FK_ClientProgress_Clients" Association="Self.FK_ClientProgress_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="ClientProgress" EntitySet="ClientProgress" />
           </AssociationSet>
-          <AssociationSet Name="FK__Clients__trainer__4BAC3F29" Association="Self.FK__Clients__trainer__4BAC3F29">
+          <AssociationSet Name="FK_Equipment_StatusEquipment" Association="Self.FK_Equipment_StatusEquipment">
+            <End Role="StatusEquipment" EntitySet="StatusEquipment" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exericses_MuslceType" Association="Self.FK_Exericses_MuslceType">
+            <End Role="MuslceType" EntitySet="MuslceType" />
+            <End Role="Exericses" EntitySet="Exericses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goals_Clients" Association="Self.FK_Goals_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Goals" EntitySet="Goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goals_StatusGoals" Association="Self.FK_Goals_StatusGoals">
+            <End Role="StatusGoals" EntitySet="StatusGoals" />
+            <End Role="Goals" EntitySet="Goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Trainings_Trainers" Association="Self.FK_Group_Trainings_Trainers">
             <End Role="Trainers" EntitySet="Trainers" />
-            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Group_Trainings" EntitySet="Group_Trainings" />
           </AssociationSet>
-          <AssociationSet Name="FK__DietPlans__clien__628FA481" Association="Self.FK__DietPlans__clien__628FA481">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="DietPlans" EntitySet="DietPlans" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GroupMemb__clien__787EE5A0" Association="Self.FK__GroupMemb__clien__787EE5A0">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="GroupMembers" EntitySet="GroupMembers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GroupMemb__group__778AC167" Association="Self.FK__GroupMemb__group__778AC167">
-            <End Role="GroupWorkouts" EntitySet="GroupWorkouts" />
-            <End Role="GroupMembers" EntitySet="GroupMembers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GroupWork__train__73BA3083" Association="Self.FK__GroupWork__train__73BA3083">
-            <End Role="Trainers" EntitySet="Trainers" />
-            <End Role="GroupWorkouts" EntitySet="GroupWorkouts" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GroupWork__worko__74AE54BC" Association="Self.FK__GroupWork__worko__74AE54BC">
+          <AssociationSet Name="FK_Group_Trainings_Workouts" Association="Self.FK_Group_Trainings_Workouts">
             <End Role="Workouts" EntitySet="Workouts" />
-            <End Role="GroupWorkouts" EntitySet="GroupWorkouts" />
+            <End Role="Group_Trainings" EntitySet="Group_Trainings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Meals__diet_id__656C112C" Association="Self.FK__Meals__diet_id__656C112C">
-            <End Role="DietPlans" EntitySet="DietPlans" />
-            <End Role="Meals" EntitySet="Meals" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Payments__client__6EF57B66" Association="Self.FK__Payments__client__6EF57B66">
+          <AssociationSet Name="FK_GroupParticipants_Clients" Association="Self.FK_GroupParticipants_Clients">
             <End Role="Clients" EntitySet="Clients" />
-            <End Role="Payments" EntitySet="Payments" />
+            <End Role="GroupParticipants" EntitySet="GroupParticipants" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payments__traine__6FE99F9F" Association="Self.FK__Payments__traine__6FE99F9F">
-            <End Role="Trainers" EntitySet="Trainers" />
-            <End Role="Payments" EntitySet="Payments" />
+          <AssociationSet Name="FK_GroupParticipants_Group_Trainings" Association="Self.FK_GroupParticipants_Group_Trainings">
+            <End Role="Group_Trainings" EntitySet="Group_Trainings" />
+            <End Role="GroupParticipants" EntitySet="GroupParticipants" />
           </AssociationSet>
-          <AssociationSet Name="FK__RecoveryP__clien__02FC7413" Association="Self.FK__RecoveryP__clien__02FC7413">
+          <AssociationSet Name="FK_NutritionPlans_Clients" Association="Self.FK_NutritionPlans_Clients">
             <End Role="Clients" EntitySet="Clients" />
-            <End Role="RecoveryPlans" EntitySet="RecoveryPlans" />
+            <End Role="NutritionPlans" EntitySet="NutritionPlans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reports__client___68487DD7" Association="Self.FK__Reports__client___68487DD7">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reports__trainer__693CA210" Association="Self.FK__Reports__trainer__693CA210">
-            <End Role="Trainers" EntitySet="Trainers" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reviews__client___7B5B524B" Association="Self.FK__Reviews__client___7B5B524B">
+          <AssociationSet Name="FK_Reviews_Clients" Association="Self.FK_Reviews_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reviews__trainer__7C4F7684" Association="Self.FK__Reviews__trainer__7C4F7684">
+          <AssociationSet Name="FK_Reviews_Trainers" Association="Self.FK_Reviews_Trainers">
             <End Role="Trainers" EntitySet="Trainers" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK__WorkoutEx__exerc__5812160E" Association="Self.FK__WorkoutEx__exerc__5812160E">
-            <End Role="Exercises" EntitySet="Exercises" />
-            <End Role="WorkoutExercises" EntitySet="WorkoutExercises" />
-          </AssociationSet>
-          <AssociationSet Name="FK__WorkoutEx__worko__571DF1D5" Association="Self.FK__WorkoutEx__worko__571DF1D5">
-            <End Role="Workouts" EntitySet="Workouts" />
-            <End Role="WorkoutExercises" EntitySet="WorkoutExercises" />
-          </AssociationSet>
-          <AssociationSet Name="FK__WorkoutPl__clien__5AEE82B9" Association="Self.FK__WorkoutPl__clien__5AEE82B9">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="WorkoutPlans" EntitySet="WorkoutPlans" />
-          </AssociationSet>
-          <AssociationSet Name="FK__WorkoutPl__worko__5BE2A6F2" Association="Self.FK__WorkoutPl__worko__5BE2A6F2">
-            <End Role="Workouts" EntitySet="Workouts" />
-            <End Role="WorkoutPlans" EntitySet="WorkoutPlans" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Workouts__traine__52593CB8" Association="Self.FK__Workouts__traine__52593CB8">
+          <AssociationSet Name="FK_Trainers_Specialization" Association="Self.FK_Trainers_Specialization">
+            <End Role="Specialization" EntitySet="Specialization" />
             <End Role="Trainers" EntitySet="Trainers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkoutExericises_Exericses" Association="Self.FK_WorkoutExericises_Exericses">
+            <End Role="Exericses" EntitySet="Exericses" />
+            <End Role="WorkoutExericises" EntitySet="WorkoutExericises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkoutExericises_Workouts" Association="Self.FK_WorkoutExericises_Workouts">
+            <End Role="Workouts" EntitySet="Workouts" />
+            <End Role="WorkoutExericises" EntitySet="WorkoutExericises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workouts_Clients" Association="Self.FK_Workouts_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Workouts" EntitySet="Workouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workouts_Trainers" Association="Self.FK_Workouts_Trainers">
+            <End Role="Trainers" EntitySet="Trainers" />
+            <End Role="Workouts" EntitySet="Workouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workouts_TypeWorkouts" Association="Self.FK_Workouts_TypeWorkouts">
+            <End Role="TypeWorkouts" EntitySet="TypeWorkouts" />
             <End Role="Workouts" EntitySet="Workouts" />
           </AssociationSet>
         </EntityContainer>
@@ -562,565 +527,561 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FitnessAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Articles">
-          <Key>
-            <PropertyRef Name="article_id" />
-          </Key>
-          <Property Name="article_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="author_id" Type="Int32" />
-          <NavigationProperty Name="Trainers" Relationship="Self.FK__Articles__author__00200768" FromRole="Articles" ToRole="Trainers" />
-        </EntityType>
+      <Schema Namespace="FitnessGetMoreFitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ClientProgress">
           <Key>
-            <PropertyRef Name="progress_id" />
+            <PropertyRef Name="IDProgress" />
           </Key>
-          <Property Name="progress_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="client_id" Type="Int32" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="weight" Type="Double" />
-          <Property Name="measurements" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="strength" Type="Double" />
-          <Property Name="endurance" Type="Double" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK__ClientPro__clien__4E88ABD4" FromRole="ClientProgress" ToRole="Clients" />
+          <Property Name="IDProgress" Type="Int32" Nullable="false" />
+          <Property Name="IDClient" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Weight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Chest" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Waist" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Hips" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_ClientProgress_Clients" FromRole="ClientProgress" ToRole="Clients" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
-            <PropertyRef Name="client_id" />
+            <PropertyRef Name="IDClient" />
           </Key>
-          <Property Name="client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="age" Type="Int32" />
-          <Property Name="weight" Type="Double" />
-          <Property Name="height" Type="Double" />
-          <Property Name="goal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="trainer_id" Type="Int32" />
-          <NavigationProperty Name="ClientProgress" Relationship="Self.FK__ClientPro__clien__4E88ABD4" FromRole="Clients" ToRole="ClientProgress" />
-          <NavigationProperty Name="Trainers" Relationship="Self.FK__Clients__trainer__4BAC3F29" FromRole="Clients" ToRole="Trainers" />
-          <NavigationProperty Name="DietPlans" Relationship="Self.FK__DietPlans__clien__628FA481" FromRole="Clients" ToRole="DietPlans" />
-          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__client__6EF57B66" FromRole="Clients" ToRole="Payments" />
-          <NavigationProperty Name="RecoveryPlans" Relationship="Self.FK__RecoveryP__clien__02FC7413" FromRole="Clients" ToRole="RecoveryPlans" />
-          <NavigationProperty Name="Reports" Relationship="Self.FK__Reports__client___68487DD7" FromRole="Clients" ToRole="Reports" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__client___7B5B524B" FromRole="Clients" ToRole="Reviews" />
-          <NavigationProperty Name="WorkoutPlans" Relationship="Self.FK__WorkoutPl__clien__5AEE82B9" FromRole="Clients" ToRole="WorkoutPlans" />
-          <NavigationProperty Name="GroupWorkouts" Relationship="Self.GroupMembers" FromRole="Clients" ToRole="GroupWorkouts" />
-        </EntityType>
-        <EntityType Name="DietPlans">
-          <Key>
-            <PropertyRef Name="diet_id" />
-          </Key>
-          <Property Name="diet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="client_id" Type="Int32" />
-          <Property Name="calories" Type="Int32" />
-          <Property Name="macronutrients" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK__DietPlans__clien__628FA481" FromRole="DietPlans" ToRole="Clients" />
-          <NavigationProperty Name="Meals" Relationship="Self.FK__Meals__diet_id__656C112C" FromRole="DietPlans" ToRole="Meals" />
+          <Property Name="IDClient" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Weight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Height" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="0" />
+          <Property Name="Goal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ClientProgress" Relationship="Self.FK_ClientProgress_Clients" FromRole="Clients" ToRole="ClientProgress" />
+          <NavigationProperty Name="Goals" Relationship="Self.FK_Goals_Clients" FromRole="Clients" ToRole="Goals" />
+          <NavigationProperty Name="GroupParticipants" Relationship="Self.FK_GroupParticipants_Clients" FromRole="Clients" ToRole="GroupParticipants" />
+          <NavigationProperty Name="NutritionPlans" Relationship="Self.FK_NutritionPlans_Clients" FromRole="Clients" ToRole="NutritionPlans" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Clients" FromRole="Clients" ToRole="Reviews" />
+          <NavigationProperty Name="Workouts" Relationship="Self.FK_Workouts_Clients" FromRole="Clients" ToRole="Workouts" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
-            <PropertyRef Name="equipment_id" />
+            <PropertyRef Name="IDEquipment" />
           </Key>
-          <Property Name="equipment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDEquipment" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="IDStatusEquip" Type="Int32" />
+          <NavigationProperty Name="StatusEquipment" Relationship="Self.FK_Equipment_StatusEquipment" FromRole="Equipment" ToRole="StatusEquipment" />
         </EntityType>
-        <EntityType Name="Exercises">
+        <EntityType Name="Exericses">
           <Key>
-            <PropertyRef Name="exercise_id" />
+            <PropertyRef Name="IDExercises" />
           </Key>
-          <Property Name="exercise_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="video_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="muscle_group" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="WorkoutExercises" Relationship="Self.FK__WorkoutEx__exerc__5812160E" FromRole="Exercises" ToRole="WorkoutExercises" />
+          <Property Name="IDExercises" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDMuscleType" Type="Int32" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MuslceType" Relationship="Self.FK_Exericses_MuslceType" FromRole="Exericses" ToRole="MuslceType" />
+          <NavigationProperty Name="WorkoutExericises" Relationship="Self.FK_WorkoutExericises_Exericses" FromRole="Exericses" ToRole="WorkoutExericises" />
         </EntityType>
-        <EntityType Name="GroupWorkouts">
+        <EntityType Name="Goals">
           <Key>
-            <PropertyRef Name="group_id" />
+            <PropertyRef Name="IDGoals" />
           </Key>
-          <Property Name="group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="trainer_id" Type="Int32" />
-          <Property Name="workout_id" Type="Int32" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Trainers" Relationship="Self.FK__GroupWork__train__73BA3083" FromRole="GroupWorkouts" ToRole="Trainers" />
-          <NavigationProperty Name="Workouts" Relationship="Self.FK__GroupWork__worko__74AE54BC" FromRole="GroupWorkouts" ToRole="Workouts" />
-          <NavigationProperty Name="Clients" Relationship="Self.GroupMembers" FromRole="GroupWorkouts" ToRole="Clients" />
+          <Property Name="IDGoals" Type="Int32" Nullable="false" />
+          <Property Name="IDClient" Type="Int32" />
+          <Property Name="TargetWieght" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="TargetDate" Type="DateTime" Precision="0" />
+          <Property Name="IDStatusGoals" Type="Int32" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Goals_Clients" FromRole="Goals" ToRole="Clients" />
+          <NavigationProperty Name="StatusGoals" Relationship="Self.FK_Goals_StatusGoals" FromRole="Goals" ToRole="StatusGoals" />
         </EntityType>
-        <EntityType Name="Meals">
+        <EntityType Name="Group_Trainings">
           <Key>
-            <PropertyRef Name="meal_id" />
+            <PropertyRef Name="IDGroup" />
           </Key>
-          <Property Name="meal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="diet_id" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DietPlans" Relationship="Self.FK__Meals__diet_id__656C112C" FromRole="Meals" ToRole="DietPlans" />
+          <Property Name="IDGroup" Type="Int32" Nullable="false" />
+          <Property Name="IDTrainer" Type="Int32" />
+          <Property Name="IDWorkout" Type="Int32" />
+          <Property Name="MaxParticipants" Type="Int32" />
+          <Property Name="CurrentParticipants" Type="Int32" />
+          <NavigationProperty Name="Trainers" Relationship="Self.FK_Group_Trainings_Trainers" FromRole="Group_Trainings" ToRole="Trainers" />
+          <NavigationProperty Name="Workouts" Relationship="Self.FK_Group_Trainings_Workouts" FromRole="Group_Trainings" ToRole="Workouts" />
+          <NavigationProperty Name="GroupParticipants" Relationship="Self.FK_GroupParticipants_Group_Trainings" FromRole="Group_Trainings" ToRole="GroupParticipants" />
         </EntityType>
-        <EntityType Name="Messages">
+        <EntityType Name="GroupParticipants">
           <Key>
-            <PropertyRef Name="message_id" />
+            <PropertyRef Name="IDParticipant" />
           </Key>
-          <Property Name="message_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sender_id" Type="Int32" Nullable="false" />
-          <Property Name="receiver_id" Type="Int32" Nullable="false" />
-          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="timestamp" Type="DateTime" Precision="3" />
+          <Property Name="IDParticipant" Type="Int32" Nullable="false" />
+          <Property Name="IDGroup" Type="Int32" />
+          <Property Name="IDClient" Type="Int32" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_GroupParticipants_Clients" FromRole="GroupParticipants" ToRole="Clients" />
+          <NavigationProperty Name="Group_Trainings" Relationship="Self.FK_GroupParticipants_Group_Trainings" FromRole="GroupParticipants" ToRole="Group_Trainings" />
         </EntityType>
-        <EntityType Name="Payments">
+        <EntityType Name="MuslceType">
           <Key>
-            <PropertyRef Name="payment_id" />
+            <PropertyRef Name="IDMuscleType" />
           </Key>
-          <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="client_id" Type="Int32" />
-          <Property Name="trainer_id" Type="Int32" />
-          <Property Name="amount" Type="Double" Nullable="false" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK__Payments__client__6EF57B66" FromRole="Payments" ToRole="Clients" />
-          <NavigationProperty Name="Trainers" Relationship="Self.FK__Payments__traine__6FE99F9F" FromRole="Payments" ToRole="Trainers" />
+          <Property Name="IDMuscleType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Exericses" Relationship="Self.FK_Exericses_MuslceType" FromRole="MuslceType" ToRole="Exericses" />
         </EntityType>
-        <EntityType Name="RecoveryPlans">
+        <EntityType Name="NutritionPlans">
           <Key>
-            <PropertyRef Name="recovery_id" />
+            <PropertyRef Name="IDPlan" />
           </Key>
-          <Property Name="recovery_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="client_id" Type="Int32" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="sleep_tracker" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="stretching_exercises" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK__RecoveryP__clien__02FC7413" FromRole="RecoveryPlans" ToRole="Clients" />
-        </EntityType>
-        <EntityType Name="Reports">
-          <Key>
-            <PropertyRef Name="report_id" />
-          </Key>
-          <Property Name="report_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="client_id" Type="Int32" />
-          <Property Name="trainer_id" Type="Int32" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK__Reports__client___68487DD7" FromRole="Reports" ToRole="Clients" />
-          <NavigationProperty Name="Trainers" Relationship="Self.FK__Reports__trainer__693CA210" FromRole="Reports" ToRole="Trainers" />
+          <Property Name="IDPlan" Type="Int32" Nullable="false" />
+          <Property Name="IDClient" Type="Int32" />
+          <Property Name="CaloriesPerDay" Type="Int32" />
+          <Property Name="Proteint" Type="Int32" />
+          <Property Name="Carbs" Type="Int32" />
+          <Property Name="Fats" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_NutritionPlans_Clients" FromRole="NutritionPlans" ToRole="Clients" />
         </EntityType>
         <EntityType Name="Reviews">
           <Key>
-            <PropertyRef Name="review_id" />
+            <PropertyRef Name="IDReview" />
           </Key>
-          <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="client_id" Type="Int32" />
-          <Property Name="trainer_id" Type="Int32" />
-          <Property Name="rating" Type="Int32" />
-          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK__Reviews__client___7B5B524B" FromRole="Reviews" ToRole="Clients" />
-          <NavigationProperty Name="Trainers" Relationship="Self.FK__Reviews__trainer__7C4F7684" FromRole="Reviews" ToRole="Trainers" />
+          <Property Name="IDReview" Type="Int32" Nullable="false" />
+          <Property Name="IDCleint" Type="Int32" />
+          <Property Name="IDTrainer" Type="Int32" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RewievDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Reviews_Clients" FromRole="Reviews" ToRole="Clients" />
+          <NavigationProperty Name="Trainers" Relationship="Self.FK_Reviews_Trainers" FromRole="Reviews" ToRole="Trainers" />
         </EntityType>
-        <EntityType Name="Settings">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="setting_id" />
+            <PropertyRef Name="IDRole" />
           </Key>
-          <Property Name="setting_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="theme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="notifications" Type="Boolean" />
+          <Property Name="IDRole" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
-        <EntityType Name="SyncData">
+        <EntityType Name="Specialization">
           <Key>
-            <PropertyRef Name="sync_id" />
+            <PropertyRef Name="IDSpec" />
           </Key>
-          <Property Name="sync_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="last_sync" Type="DateTime" Precision="3" />
+          <Property Name="IDSpec" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Trainers" Relationship="Self.FK_Trainers_Specialization" FromRole="Specialization" ToRole="Trainers" />
+        </EntityType>
+        <EntityType Name="StatusEquipment">
+          <Key>
+            <PropertyRef Name="IDStatusEquip" />
+          </Key>
+          <Property Name="IDStatusEquip" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_Equipment_StatusEquipment" FromRole="StatusEquipment" ToRole="Equipment" />
+        </EntityType>
+        <EntityType Name="StatusGoals">
+          <Key>
+            <PropertyRef Name="IDStatusGoals" />
+          </Key>
+          <Property Name="IDStatusGoals" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Goals" Relationship="Self.FK_Goals_StatusGoals" FromRole="StatusGoals" ToRole="Goals" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Trainers">
           <Key>
-            <PropertyRef Name="trainer_id" />
+            <PropertyRef Name="IDTrainers" />
           </Key>
-          <Property Name="trainer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="specialization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="schedule" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Articles" Relationship="Self.FK__Articles__author__00200768" FromRole="Trainers" ToRole="Articles" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK__Clients__trainer__4BAC3F29" FromRole="Trainers" ToRole="Clients" />
-          <NavigationProperty Name="GroupWorkouts" Relationship="Self.FK__GroupWork__train__73BA3083" FromRole="Trainers" ToRole="GroupWorkouts" />
-          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__traine__6FE99F9F" FromRole="Trainers" ToRole="Payments" />
-          <NavigationProperty Name="Reports" Relationship="Self.FK__Reports__trainer__693CA210" FromRole="Trainers" ToRole="Reports" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__trainer__7C4F7684" FromRole="Trainers" ToRole="Reviews" />
-          <NavigationProperty Name="Workouts" Relationship="Self.FK__Workouts__traine__52593CB8" FromRole="Trainers" ToRole="Workouts" />
+          <Property Name="IDTrainers" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDSpec" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Group_Trainings" Relationship="Self.FK_Group_Trainings_Trainers" FromRole="Trainers" ToRole="Group_Trainings" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Trainers" FromRole="Trainers" ToRole="Reviews" />
+          <NavigationProperty Name="Specialization" Relationship="Self.FK_Trainers_Specialization" FromRole="Trainers" ToRole="Specialization" />
+          <NavigationProperty Name="Workouts" Relationship="Self.FK_Workouts_Trainers" FromRole="Trainers" ToRole="Workouts" />
         </EntityType>
-        <EntityType Name="WorkoutExercises">
+        <EntityType Name="TypeWorkouts">
           <Key>
-            <PropertyRef Name="workout_id" />
-            <PropertyRef Name="exercise_id" />
+            <PropertyRef Name="IDType" />
           </Key>
-          <Property Name="workout_id" Type="Int32" Nullable="false" />
-          <Property Name="exercise_id" Type="Int32" Nullable="false" />
-          <Property Name="sets" Type="Int32" />
-          <Property Name="reps" Type="Int32" />
-          <NavigationProperty Name="Exercises" Relationship="Self.FK__WorkoutEx__exerc__5812160E" FromRole="WorkoutExercises" ToRole="Exercises" />
-          <NavigationProperty Name="Workouts" Relationship="Self.FK__WorkoutEx__worko__571DF1D5" FromRole="WorkoutExercises" ToRole="Workouts" />
+          <Property Name="IDType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Workouts" Relationship="Self.FK_Workouts_TypeWorkouts" FromRole="TypeWorkouts" ToRole="Workouts" />
         </EntityType>
-        <EntityType Name="WorkoutPlans">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="plan_id" />
+            <PropertyRef Name="IDUser" />
           </Key>
-          <Property Name="plan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="client_id" Type="Int32" />
-          <Property Name="workout_id" Type="Int32" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK__WorkoutPl__clien__5AEE82B9" FromRole="WorkoutPlans" ToRole="Clients" />
-          <NavigationProperty Name="Workouts" Relationship="Self.FK__WorkoutPl__worko__5BE2A6F2" FromRole="WorkoutPlans" ToRole="Workouts" />
+          <Property Name="IDUser" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDRole" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="WorkoutExericises">
+          <Key>
+            <PropertyRef Name="IDWorkoutExericses" />
+          </Key>
+          <Property Name="IDWorkoutExericses" Type="Int32" Nullable="false" />
+          <Property Name="IDWorkout" Type="Int32" />
+          <Property Name="IDExercises" Type="Int32" />
+          <Property Name="Sets" Type="Int32" />
+          <Property Name="Reps" Type="Int32" />
+          <Property Name="WeightUsed" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Exericses" Relationship="Self.FK_WorkoutExericises_Exericses" FromRole="WorkoutExericises" ToRole="Exericses" />
+          <NavigationProperty Name="Workouts" Relationship="Self.FK_WorkoutExericises_Workouts" FromRole="WorkoutExericises" ToRole="Workouts" />
         </EntityType>
         <EntityType Name="Workouts">
           <Key>
-            <PropertyRef Name="workout_id" />
+            <PropertyRef Name="IDWorkout" />
           </Key>
-          <Property Name="workout_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="trainer_id" Type="Int32" />
-          <NavigationProperty Name="GroupWorkouts" Relationship="Self.FK__GroupWork__worko__74AE54BC" FromRole="Workouts" ToRole="GroupWorkouts" />
-          <NavigationProperty Name="Trainers" Relationship="Self.FK__Workouts__traine__52593CB8" FromRole="Workouts" ToRole="Trainers" />
-          <NavigationProperty Name="WorkoutExercises" Relationship="Self.FK__WorkoutEx__worko__571DF1D5" FromRole="Workouts" ToRole="WorkoutExercises" />
-          <NavigationProperty Name="WorkoutPlans" Relationship="Self.FK__WorkoutPl__worko__5BE2A6F2" FromRole="Workouts" ToRole="WorkoutPlans" />
+          <Property Name="IDWorkout" Type="Int32" Nullable="false" />
+          <Property Name="IDClient" Type="Int32" />
+          <Property Name="IDTrainers" Type="Int32" />
+          <Property Name="DateWorkout" Type="DateTime" Precision="3" />
+          <Property Name="Duration" Type="Int32" />
+          <Property Name="IDType" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Workouts_Clients" FromRole="Workouts" ToRole="Clients" />
+          <NavigationProperty Name="Group_Trainings" Relationship="Self.FK_Group_Trainings_Workouts" FromRole="Workouts" ToRole="Group_Trainings" />
+          <NavigationProperty Name="Trainers" Relationship="Self.FK_Workouts_Trainers" FromRole="Workouts" ToRole="Trainers" />
+          <NavigationProperty Name="TypeWorkouts" Relationship="Self.FK_Workouts_TypeWorkouts" FromRole="Workouts" ToRole="TypeWorkouts" />
+          <NavigationProperty Name="WorkoutExericises" Relationship="Self.FK_WorkoutExericises_Workouts" FromRole="Workouts" ToRole="WorkoutExericises" />
         </EntityType>
-        <Association Name="FK__Articles__author__00200768">
-          <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
-          <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
-            </Principal>
-            <Dependent Role="Articles">
-              <PropertyRef Name="author_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ClientPro__clien__4E88ABD4">
+        <Association Name="FK_ClientProgress_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
           <End Role="ClientProgress" Type="Self.ClientProgress" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
             <Dependent Role="ClientProgress">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Clients__trainer__4BAC3F29">
-          <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
-          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
-            </Principal>
-            <Dependent Role="Clients">
-              <PropertyRef Name="trainer_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__DietPlans__clien__628FA481">
+        <Association Name="FK_Goals_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="DietPlans" Type="Self.DietPlans" Multiplicity="*" />
+          <End Role="Goals" Type="Self.Goals" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
-            <Dependent Role="DietPlans">
-              <PropertyRef Name="client_id" />
+            <Dependent Role="Goals">
+              <PropertyRef Name="IDClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payments__client__6EF57B66">
+        <Association Name="FK_GroupParticipants_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <End Role="GroupParticipants" Type="Self.GroupParticipants" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
-            <Dependent Role="Payments">
-              <PropertyRef Name="client_id" />
+            <Dependent Role="GroupParticipants">
+              <PropertyRef Name="IDClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RecoveryP__clien__02FC7413">
+        <Association Name="FK_NutritionPlans_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="RecoveryPlans" Type="Self.RecoveryPlans" Multiplicity="*" />
+          <End Role="NutritionPlans" Type="Self.NutritionPlans" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
-            <Dependent Role="RecoveryPlans">
-              <PropertyRef Name="client_id" />
+            <Dependent Role="NutritionPlans">
+              <PropertyRef Name="IDClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reports__client___68487DD7">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
-            </Principal>
-            <Dependent Role="Reports">
-              <PropertyRef Name="client_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reviews__client___7B5B524B">
+        <Association Name="FK_Reviews_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
           <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
             <Dependent Role="Reviews">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDCleint" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WorkoutPl__clien__5AEE82B9">
+        <Association Name="FK_Workouts_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="WorkoutPlans" Type="Self.WorkoutPlans" Multiplicity="*" />
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+              <PropertyRef Name="IDClient" />
             </Principal>
-            <Dependent Role="WorkoutPlans">
-              <PropertyRef Name="client_id" />
+            <Dependent Role="Workouts">
+              <PropertyRef Name="IDClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Meals__diet_id__656C112C">
-          <End Role="DietPlans" Type="Self.DietPlans" Multiplicity="0..1" />
-          <End Role="Meals" Type="Self.Meals" Multiplicity="*" />
+        <Association Name="FK_Equipment_StatusEquipment">
+          <End Role="StatusEquipment" Type="Self.StatusEquipment" Multiplicity="0..1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DietPlans">
-              <PropertyRef Name="diet_id" />
+            <Principal Role="StatusEquipment">
+              <PropertyRef Name="IDStatusEquip" />
             </Principal>
-            <Dependent Role="Meals">
-              <PropertyRef Name="diet_id" />
+            <Dependent Role="Equipment">
+              <PropertyRef Name="IDStatusEquip" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WorkoutEx__exerc__5812160E">
-          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
-          <End Role="WorkoutExercises" Type="Self.WorkoutExercises" Multiplicity="*" />
+        <Association Name="FK_Exericses_MuslceType">
+          <End Role="MuslceType" Type="Self.MuslceType" Multiplicity="0..1" />
+          <End Role="Exericses" Type="Self.Exericses" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Exercises">
-              <PropertyRef Name="exercise_id" />
+            <Principal Role="MuslceType">
+              <PropertyRef Name="IDMuscleType" />
             </Principal>
-            <Dependent Role="WorkoutExercises">
-              <PropertyRef Name="exercise_id" />
+            <Dependent Role="Exericses">
+              <PropertyRef Name="IDMuscleType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GroupWork__train__73BA3083">
+        <Association Name="FK_WorkoutExericises_Exericses">
+          <End Role="Exericses" Type="Self.Exericses" Multiplicity="0..1" />
+          <End Role="WorkoutExericises" Type="Self.WorkoutExericises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exericses">
+              <PropertyRef Name="IDExercises" />
+            </Principal>
+            <Dependent Role="WorkoutExericises">
+              <PropertyRef Name="IDExercises" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goals_StatusGoals">
+          <End Role="StatusGoals" Type="Self.StatusGoals" Multiplicity="0..1" />
+          <End Role="Goals" Type="Self.Goals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusGoals">
+              <PropertyRef Name="IDStatusGoals" />
+            </Principal>
+            <Dependent Role="Goals">
+              <PropertyRef Name="IDStatusGoals" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Trainings_Trainers">
           <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
-          <End Role="GroupWorkouts" Type="Self.GroupWorkouts" Multiplicity="*" />
+          <End Role="Group_Trainings" Type="Self.Group_Trainings" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
+              <PropertyRef Name="IDTrainers" />
             </Principal>
-            <Dependent Role="GroupWorkouts">
-              <PropertyRef Name="trainer_id" />
+            <Dependent Role="Group_Trainings">
+              <PropertyRef Name="IDTrainer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GroupWork__worko__74AE54BC">
+        <Association Name="FK_Group_Trainings_Workouts">
           <End Role="Workouts" Type="Self.Workouts" Multiplicity="0..1" />
-          <End Role="GroupWorkouts" Type="Self.GroupWorkouts" Multiplicity="*" />
+          <End Role="Group_Trainings" Type="Self.Group_Trainings" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workouts">
-              <PropertyRef Name="workout_id" />
+              <PropertyRef Name="IDWorkout" />
             </Principal>
-            <Dependent Role="GroupWorkouts">
-              <PropertyRef Name="workout_id" />
+            <Dependent Role="Group_Trainings">
+              <PropertyRef Name="IDWorkout" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payments__traine__6FE99F9F">
-          <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
-          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+        <Association Name="FK_GroupParticipants_Group_Trainings">
+          <End Role="Group_Trainings" Type="Self.Group_Trainings" Multiplicity="0..1" />
+          <End Role="GroupParticipants" Type="Self.GroupParticipants" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
+            <Principal Role="Group_Trainings">
+              <PropertyRef Name="IDGroup" />
             </Principal>
-            <Dependent Role="Payments">
-              <PropertyRef Name="trainer_id" />
+            <Dependent Role="GroupParticipants">
+              <PropertyRef Name="IDGroup" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reports__trainer__693CA210">
-          <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
-          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
-            </Principal>
-            <Dependent Role="Reports">
-              <PropertyRef Name="trainer_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reviews__trainer__7C4F7684">
+        <Association Name="FK_Reviews_Trainers">
           <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
           <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
+              <PropertyRef Name="IDTrainers" />
             </Principal>
             <Dependent Role="Reviews">
-              <PropertyRef Name="trainer_id" />
+              <PropertyRef Name="IDTrainer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Workouts__traine__52593CB8">
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IDRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IDRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trainers_Specialization">
+          <End Role="Specialization" Type="Self.Specialization" Multiplicity="0..1" />
+          <End Role="Trainers" Type="Self.Trainers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialization">
+              <PropertyRef Name="IDSpec" />
+            </Principal>
+            <Dependent Role="Trainers">
+              <PropertyRef Name="IDSpec" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workouts_Trainers">
           <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
           <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Trainers">
-              <PropertyRef Name="trainer_id" />
+              <PropertyRef Name="IDTrainers" />
             </Principal>
             <Dependent Role="Workouts">
-              <PropertyRef Name="trainer_id" />
+              <PropertyRef Name="IDTrainers" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WorkoutEx__worko__571DF1D5">
-          <End Role="Workouts" Type="Self.Workouts" Multiplicity="1" />
-          <End Role="WorkoutExercises" Type="Self.WorkoutExercises" Multiplicity="*" />
+        <Association Name="FK_Workouts_TypeWorkouts">
+          <End Role="TypeWorkouts" Type="Self.TypeWorkouts" Multiplicity="0..1" />
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Workouts">
-              <PropertyRef Name="workout_id" />
+            <Principal Role="TypeWorkouts">
+              <PropertyRef Name="IDType" />
             </Principal>
-            <Dependent Role="WorkoutExercises">
-              <PropertyRef Name="workout_id" />
+            <Dependent Role="Workouts">
+              <PropertyRef Name="IDType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WorkoutPl__worko__5BE2A6F2">
+        <Association Name="FK_WorkoutExericises_Workouts">
           <End Role="Workouts" Type="Self.Workouts" Multiplicity="0..1" />
-          <End Role="WorkoutPlans" Type="Self.WorkoutPlans" Multiplicity="*" />
+          <End Role="WorkoutExericises" Type="Self.WorkoutExericises" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workouts">
-              <PropertyRef Name="workout_id" />
+              <PropertyRef Name="IDWorkout" />
             </Principal>
-            <Dependent Role="WorkoutPlans">
-              <PropertyRef Name="workout_id" />
+            <Dependent Role="WorkoutExericises">
+              <PropertyRef Name="IDWorkout" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="GroupMembers">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
-          <End Role="GroupWorkouts" Type="Self.GroupWorkouts" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="FitnessAppEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Articles" EntityType="Self.Articles" />
+        <EntityContainer Name="FitnessGetMoreFitEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ClientProgress" EntityType="Self.ClientProgress" />
           <EntitySet Name="Clients" EntityType="Self.Clients" />
-          <EntitySet Name="DietPlans" EntityType="Self.DietPlans" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" />
-          <EntitySet Name="Exercises" EntityType="Self.Exercises" />
-          <EntitySet Name="GroupWorkouts" EntityType="Self.GroupWorkouts" />
-          <EntitySet Name="Meals" EntityType="Self.Meals" />
-          <EntitySet Name="Messages" EntityType="Self.Messages" />
-          <EntitySet Name="Payments" EntityType="Self.Payments" />
-          <EntitySet Name="RecoveryPlans" EntityType="Self.RecoveryPlans" />
-          <EntitySet Name="Reports" EntityType="Self.Reports" />
+          <EntitySet Name="Exericses" EntityType="Self.Exericses" />
+          <EntitySet Name="Goals" EntityType="Self.Goals" />
+          <EntitySet Name="Group_Trainings" EntityType="Self.Group_Trainings" />
+          <EntitySet Name="GroupParticipants" EntityType="Self.GroupParticipants" />
+          <EntitySet Name="MuslceType" EntityType="Self.MuslceType" />
+          <EntitySet Name="NutritionPlans" EntityType="Self.NutritionPlans" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" />
-          <EntitySet Name="Settings" EntityType="Self.Settings" />
-          <EntitySet Name="SyncData" EntityType="Self.SyncData" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Specialization" EntityType="Self.Specialization" />
+          <EntitySet Name="StatusEquipment" EntityType="Self.StatusEquipment" />
+          <EntitySet Name="StatusGoals" EntityType="Self.StatusGoals" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Trainers" EntityType="Self.Trainers" />
-          <EntitySet Name="WorkoutExercises" EntityType="Self.WorkoutExercises" />
-          <EntitySet Name="WorkoutPlans" EntityType="Self.WorkoutPlans" />
+          <EntitySet Name="TypeWorkouts" EntityType="Self.TypeWorkouts" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="WorkoutExericises" EntityType="Self.WorkoutExericises" />
           <EntitySet Name="Workouts" EntityType="Self.Workouts" />
-          <AssociationSet Name="FK__Articles__author__00200768" Association="Self.FK__Articles__author__00200768">
-            <End Role="Trainers" EntitySet="Trainers" />
-            <End Role="Articles" EntitySet="Articles" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ClientPro__clien__4E88ABD4" Association="Self.FK__ClientPro__clien__4E88ABD4">
+          <AssociationSet Name="FK_ClientProgress_Clients" Association="Self.FK_ClientProgress_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="ClientProgress" EntitySet="ClientProgress" />
           </AssociationSet>
-          <AssociationSet Name="FK__Clients__trainer__4BAC3F29" Association="Self.FK__Clients__trainer__4BAC3F29">
-            <End Role="Trainers" EntitySet="Trainers" />
+          <AssociationSet Name="FK_Goals_Clients" Association="Self.FK_Goals_Clients">
             <End Role="Clients" EntitySet="Clients" />
+            <End Role="Goals" EntitySet="Goals" />
           </AssociationSet>
-          <AssociationSet Name="FK__DietPlans__clien__628FA481" Association="Self.FK__DietPlans__clien__628FA481">
+          <AssociationSet Name="FK_GroupParticipants_Clients" Association="Self.FK_GroupParticipants_Clients">
             <End Role="Clients" EntitySet="Clients" />
-            <End Role="DietPlans" EntitySet="DietPlans" />
+            <End Role="GroupParticipants" EntitySet="GroupParticipants" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payments__client__6EF57B66" Association="Self.FK__Payments__client__6EF57B66">
+          <AssociationSet Name="FK_NutritionPlans_Clients" Association="Self.FK_NutritionPlans_Clients">
             <End Role="Clients" EntitySet="Clients" />
-            <End Role="Payments" EntitySet="Payments" />
+            <End Role="NutritionPlans" EntitySet="NutritionPlans" />
           </AssociationSet>
-          <AssociationSet Name="FK__RecoveryP__clien__02FC7413" Association="Self.FK__RecoveryP__clien__02FC7413">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="RecoveryPlans" EntitySet="RecoveryPlans" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reports__client___68487DD7" Association="Self.FK__Reports__client___68487DD7">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reviews__client___7B5B524B" Association="Self.FK__Reviews__client___7B5B524B">
+          <AssociationSet Name="FK_Reviews_Clients" Association="Self.FK_Reviews_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK__WorkoutPl__clien__5AEE82B9" Association="Self.FK__WorkoutPl__clien__5AEE82B9">
+          <AssociationSet Name="FK_Workouts_Clients" Association="Self.FK_Workouts_Clients">
             <End Role="Clients" EntitySet="Clients" />
-            <End Role="WorkoutPlans" EntitySet="WorkoutPlans" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Meals__diet_id__656C112C" Association="Self.FK__Meals__diet_id__656C112C">
-            <End Role="DietPlans" EntitySet="DietPlans" />
-            <End Role="Meals" EntitySet="Meals" />
-          </AssociationSet>
-          <AssociationSet Name="FK__WorkoutEx__exerc__5812160E" Association="Self.FK__WorkoutEx__exerc__5812160E">
-            <End Role="Exercises" EntitySet="Exercises" />
-            <End Role="WorkoutExercises" EntitySet="WorkoutExercises" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GroupWork__train__73BA3083" Association="Self.FK__GroupWork__train__73BA3083">
-            <End Role="Trainers" EntitySet="Trainers" />
-            <End Role="GroupWorkouts" EntitySet="GroupWorkouts" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GroupWork__worko__74AE54BC" Association="Self.FK__GroupWork__worko__74AE54BC">
             <End Role="Workouts" EntitySet="Workouts" />
-            <End Role="GroupWorkouts" EntitySet="GroupWorkouts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payments__traine__6FE99F9F" Association="Self.FK__Payments__traine__6FE99F9F">
+          <AssociationSet Name="FK_Equipment_StatusEquipment" Association="Self.FK_Equipment_StatusEquipment">
+            <End Role="StatusEquipment" EntitySet="StatusEquipment" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exericses_MuslceType" Association="Self.FK_Exericses_MuslceType">
+            <End Role="MuslceType" EntitySet="MuslceType" />
+            <End Role="Exericses" EntitySet="Exericses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkoutExericises_Exericses" Association="Self.FK_WorkoutExericises_Exericses">
+            <End Role="Exericses" EntitySet="Exericses" />
+            <End Role="WorkoutExericises" EntitySet="WorkoutExericises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goals_StatusGoals" Association="Self.FK_Goals_StatusGoals">
+            <End Role="StatusGoals" EntitySet="StatusGoals" />
+            <End Role="Goals" EntitySet="Goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Trainings_Trainers" Association="Self.FK_Group_Trainings_Trainers">
             <End Role="Trainers" EntitySet="Trainers" />
-            <End Role="Payments" EntitySet="Payments" />
+            <End Role="Group_Trainings" EntitySet="Group_Trainings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reports__trainer__693CA210" Association="Self.FK__Reports__trainer__693CA210">
-            <End Role="Trainers" EntitySet="Trainers" />
-            <End Role="Reports" EntitySet="Reports" />
+          <AssociationSet Name="FK_Group_Trainings_Workouts" Association="Self.FK_Group_Trainings_Workouts">
+            <End Role="Workouts" EntitySet="Workouts" />
+            <End Role="Group_Trainings" EntitySet="Group_Trainings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reviews__trainer__7C4F7684" Association="Self.FK__Reviews__trainer__7C4F7684">
+          <AssociationSet Name="FK_GroupParticipants_Group_Trainings" Association="Self.FK_GroupParticipants_Group_Trainings">
+            <End Role="Group_Trainings" EntitySet="Group_Trainings" />
+            <End Role="GroupParticipants" EntitySet="GroupParticipants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Trainers" Association="Self.FK_Reviews_Trainers">
             <End Role="Trainers" EntitySet="Trainers" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK__Workouts__traine__52593CB8" Association="Self.FK__Workouts__traine__52593CB8">
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trainers_Specialization" Association="Self.FK_Trainers_Specialization">
+            <End Role="Specialization" EntitySet="Specialization" />
+            <End Role="Trainers" EntitySet="Trainers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workouts_Trainers" Association="Self.FK_Workouts_Trainers">
             <End Role="Trainers" EntitySet="Trainers" />
             <End Role="Workouts" EntitySet="Workouts" />
           </AssociationSet>
-          <AssociationSet Name="FK__WorkoutEx__worko__571DF1D5" Association="Self.FK__WorkoutEx__worko__571DF1D5">
+          <AssociationSet Name="FK_Workouts_TypeWorkouts" Association="Self.FK_Workouts_TypeWorkouts">
+            <End Role="TypeWorkouts" EntitySet="TypeWorkouts" />
             <End Role="Workouts" EntitySet="Workouts" />
-            <End Role="WorkoutExercises" EntitySet="WorkoutExercises" />
           </AssociationSet>
-          <AssociationSet Name="FK__WorkoutPl__worko__5BE2A6F2" Association="Self.FK__WorkoutPl__worko__5BE2A6F2">
+          <AssociationSet Name="FK_WorkoutExericises_Workouts" Association="Self.FK_WorkoutExericises_Workouts">
             <End Role="Workouts" EntitySet="Workouts" />
-            <End Role="WorkoutPlans" EntitySet="WorkoutPlans" />
-          </AssociationSet>
-          <AssociationSet Name="GroupMembers" Association="Self.GroupMembers">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="GroupWorkouts" EntitySet="GroupWorkouts" />
+            <End Role="WorkoutExericises" EntitySet="WorkoutExericises" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1128,220 +1089,219 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище FitnessAppModelContainer" CdmEntityContainer="FitnessAppEntities">
-          <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="FitnessAppModel.Articles">
-              <MappingFragment StoreEntitySet="Articles">
-                <ScalarProperty Name="article_id" ColumnName="article_id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="content" ColumnName="content" />
-                <ScalarProperty Name="author_id" ColumnName="author_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="Хранилище FitnessGetMoreFitModelContainer" CdmEntityContainer="FitnessGetMoreFitEntities">
           <EntitySetMapping Name="ClientProgress">
-            <EntityTypeMapping TypeName="FitnessAppModel.ClientProgress">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.ClientProgress">
               <MappingFragment StoreEntitySet="ClientProgress">
-                <ScalarProperty Name="progress_id" ColumnName="progress_id" />
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="weight" ColumnName="weight" />
-                <ScalarProperty Name="measurements" ColumnName="measurements" />
-                <ScalarProperty Name="strength" ColumnName="strength" />
-                <ScalarProperty Name="endurance" ColumnName="endurance" />
+                <ScalarProperty Name="IDProgress" ColumnName="IDProgress" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Chest" ColumnName="Chest" />
+                <ScalarProperty Name="Waist" ColumnName="Waist" />
+                <ScalarProperty Name="Hips" ColumnName="Hips" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="FitnessAppModel.Clients">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.Clients">
               <MappingFragment StoreEntitySet="Clients">
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="age" ColumnName="age" />
-                <ScalarProperty Name="weight" ColumnName="weight" />
-                <ScalarProperty Name="height" ColumnName="height" />
-                <ScalarProperty Name="goal" ColumnName="goal" />
-                <ScalarProperty Name="trainer_id" ColumnName="trainer_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DietPlans">
-            <EntityTypeMapping TypeName="FitnessAppModel.DietPlans">
-              <MappingFragment StoreEntitySet="DietPlans">
-                <ScalarProperty Name="diet_id" ColumnName="diet_id" />
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="calories" ColumnName="calories" />
-                <ScalarProperty Name="macronutrients" ColumnName="macronutrients" />
-                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Goal" ColumnName="Goal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipment">
-            <EntityTypeMapping TypeName="FitnessAppModel.Equipment">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
-                <ScalarProperty Name="equipment_id" ColumnName="equipment_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="IDEquipment" ColumnName="IDEquipment" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IDStatusEquip" ColumnName="IDStatusEquip" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Exercises">
-            <EntityTypeMapping TypeName="FitnessAppModel.Exercises">
-              <MappingFragment StoreEntitySet="Exercises">
-                <ScalarProperty Name="exercise_id" ColumnName="exercise_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="video_url" ColumnName="video_url" />
-                <ScalarProperty Name="muscle_group" ColumnName="muscle_group" />
+          <EntitySetMapping Name="Exericses">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.Exericses">
+              <MappingFragment StoreEntitySet="Exericses">
+                <ScalarProperty Name="IDExercises" ColumnName="IDExercises" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IDMuscleType" ColumnName="IDMuscleType" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GroupWorkouts">
-            <EntityTypeMapping TypeName="FitnessAppModel.GroupWorkouts">
-              <MappingFragment StoreEntitySet="GroupWorkouts">
-                <ScalarProperty Name="group_id" ColumnName="group_id" />
-                <ScalarProperty Name="trainer_id" ColumnName="trainer_id" />
-                <ScalarProperty Name="workout_id" ColumnName="workout_id" />
-                <ScalarProperty Name="date" ColumnName="date" />
+          <EntitySetMapping Name="Goals">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.Goals">
+              <MappingFragment StoreEntitySet="Goals">
+                <ScalarProperty Name="IDGoals" ColumnName="IDGoals" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="TargetWieght" ColumnName="TargetWieght" />
+                <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+                <ScalarProperty Name="IDStatusGoals" ColumnName="IDStatusGoals" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Meals">
-            <EntityTypeMapping TypeName="FitnessAppModel.Meals">
-              <MappingFragment StoreEntitySet="Meals">
-                <ScalarProperty Name="meal_id" ColumnName="meal_id" />
-                <ScalarProperty Name="diet_id" ColumnName="diet_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="description" ColumnName="description" />
+          <EntitySetMapping Name="Group_Trainings">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.Group_Trainings">
+              <MappingFragment StoreEntitySet="Group_Trainings">
+                <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+                <ScalarProperty Name="IDTrainer" ColumnName="IDTrainer" />
+                <ScalarProperty Name="IDWorkout" ColumnName="IDWorkout" />
+                <ScalarProperty Name="MaxParticipants" ColumnName="MaxParticipants" />
+                <ScalarProperty Name="CurrentParticipants" ColumnName="CurrentParticipants" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="FitnessAppModel.Messages">
-              <MappingFragment StoreEntitySet="Messages">
-                <ScalarProperty Name="message_id" ColumnName="message_id" />
-                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
-                <ScalarProperty Name="receiver_id" ColumnName="receiver_id" />
-                <ScalarProperty Name="content" ColumnName="content" />
-                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <EntitySetMapping Name="GroupParticipants">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.GroupParticipants">
+              <MappingFragment StoreEntitySet="GroupParticipants">
+                <ScalarProperty Name="IDParticipant" ColumnName="IDParticipant" />
+                <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Payments">
-            <EntityTypeMapping TypeName="FitnessAppModel.Payments">
-              <MappingFragment StoreEntitySet="Payments">
-                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="trainer_id" ColumnName="trainer_id" />
-                <ScalarProperty Name="amount" ColumnName="amount" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="status" ColumnName="status" />
+          <EntitySetMapping Name="MuslceType">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.MuslceType">
+              <MappingFragment StoreEntitySet="MuslceType">
+                <ScalarProperty Name="IDMuscleType" ColumnName="IDMuscleType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RecoveryPlans">
-            <EntityTypeMapping TypeName="FitnessAppModel.RecoveryPlans">
-              <MappingFragment StoreEntitySet="RecoveryPlans">
-                <ScalarProperty Name="recovery_id" ColumnName="recovery_id" />
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="sleep_tracker" ColumnName="sleep_tracker" />
-                <ScalarProperty Name="stretching_exercises" ColumnName="stretching_exercises" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reports">
-            <EntityTypeMapping TypeName="FitnessAppModel.Reports">
-              <MappingFragment StoreEntitySet="Reports">
-                <ScalarProperty Name="report_id" ColumnName="report_id" />
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="trainer_id" ColumnName="trainer_id" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="content" ColumnName="content" />
+          <EntitySetMapping Name="NutritionPlans">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.NutritionPlans">
+              <MappingFragment StoreEntitySet="NutritionPlans">
+                <ScalarProperty Name="IDPlan" ColumnName="IDPlan" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="CaloriesPerDay" ColumnName="CaloriesPerDay" />
+                <ScalarProperty Name="Proteint" ColumnName="Proteint" />
+                <ScalarProperty Name="Carbs" ColumnName="Carbs" />
+                <ScalarProperty Name="Fats" ColumnName="Fats" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reviews">
-            <EntityTypeMapping TypeName="FitnessAppModel.Reviews">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.Reviews">
               <MappingFragment StoreEntitySet="Reviews">
-                <ScalarProperty Name="review_id" ColumnName="review_id" />
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="trainer_id" ColumnName="trainer_id" />
-                <ScalarProperty Name="rating" ColumnName="rating" />
-                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="IDReview" ColumnName="IDReview" />
+                <ScalarProperty Name="IDCleint" ColumnName="IDCleint" />
+                <ScalarProperty Name="IDTrainer" ColumnName="IDTrainer" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="RewievDate" ColumnName="RewievDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Settings">
-            <EntityTypeMapping TypeName="FitnessAppModel.Settings">
-              <MappingFragment StoreEntitySet="Settings">
-                <ScalarProperty Name="setting_id" ColumnName="setting_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="theme" ColumnName="theme" />
-                <ScalarProperty Name="notifications" ColumnName="notifications" />
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SyncData">
-            <EntityTypeMapping TypeName="FitnessAppModel.SyncData">
-              <MappingFragment StoreEntitySet="SyncData">
-                <ScalarProperty Name="sync_id" ColumnName="sync_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="last_sync" ColumnName="last_sync" />
+          <EntitySetMapping Name="Specialization">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.Specialization">
+              <MappingFragment StoreEntitySet="Specialization">
+                <ScalarProperty Name="IDSpec" ColumnName="IDSpec" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusEquipment">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.StatusEquipment">
+              <MappingFragment StoreEntitySet="StatusEquipment">
+                <ScalarProperty Name="IDStatusEquip" ColumnName="IDStatusEquip" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusGoals">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.StatusGoals">
+              <MappingFragment StoreEntitySet="StatusGoals">
+                <ScalarProperty Name="IDStatusGoals" ColumnName="IDStatusGoals" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Trainers">
-            <EntityTypeMapping TypeName="FitnessAppModel.Trainers">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.Trainers">
               <MappingFragment StoreEntitySet="Trainers">
-                <ScalarProperty Name="trainer_id" ColumnName="trainer_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="specialization" ColumnName="specialization" />
-                <ScalarProperty Name="schedule" ColumnName="schedule" />
+                <ScalarProperty Name="IDTrainers" ColumnName="IDTrainers" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="IDSpec" ColumnName="IDSpec" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WorkoutExercises">
-            <EntityTypeMapping TypeName="FitnessAppModel.WorkoutExercises">
-              <MappingFragment StoreEntitySet="WorkoutExercises">
-                <ScalarProperty Name="workout_id" ColumnName="workout_id" />
-                <ScalarProperty Name="exercise_id" ColumnName="exercise_id" />
-                <ScalarProperty Name="sets" ColumnName="sets" />
-                <ScalarProperty Name="reps" ColumnName="reps" />
+          <EntitySetMapping Name="TypeWorkouts">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.TypeWorkouts">
+              <MappingFragment StoreEntitySet="TypeWorkouts">
+                <ScalarProperty Name="IDType" ColumnName="IDType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WorkoutPlans">
-            <EntityTypeMapping TypeName="FitnessAppModel.WorkoutPlans">
-              <MappingFragment StoreEntitySet="WorkoutPlans">
-                <ScalarProperty Name="plan_id" ColumnName="plan_id" />
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="workout_id" ColumnName="workout_id" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="status" ColumnName="status" />
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkoutExericises">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.WorkoutExericises">
+              <MappingFragment StoreEntitySet="WorkoutExericises">
+                <ScalarProperty Name="IDWorkoutExericses" ColumnName="IDWorkoutExericses" />
+                <ScalarProperty Name="IDWorkout" ColumnName="IDWorkout" />
+                <ScalarProperty Name="IDExercises" ColumnName="IDExercises" />
+                <ScalarProperty Name="Sets" ColumnName="Sets" />
+                <ScalarProperty Name="Reps" ColumnName="Reps" />
+                <ScalarProperty Name="WeightUsed" ColumnName="WeightUsed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Workouts">
-            <EntityTypeMapping TypeName="FitnessAppModel.Workouts">
+            <EntityTypeMapping TypeName="FitnessGetMoreFitModel.Workouts">
               <MappingFragment StoreEntitySet="Workouts">
-                <ScalarProperty Name="workout_id" ColumnName="workout_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="trainer_id" ColumnName="trainer_id" />
+                <ScalarProperty Name="IDWorkout" ColumnName="IDWorkout" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="IDTrainers" ColumnName="IDTrainers" />
+                <ScalarProperty Name="DateWorkout" ColumnName="DateWorkout" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="IDType" ColumnName="IDType" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="GroupMembers" TypeName="FitnessAppModel.GroupMembers" StoreEntitySet="GroupMembers">
-            <EndProperty Name="Clients">
-              <ScalarProperty Name="client_id" ColumnName="client_id" />
-            </EndProperty>
-            <EndProperty Name="GroupWorkouts">
-              <ScalarProperty Name="group_id" ColumnName="group_id" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

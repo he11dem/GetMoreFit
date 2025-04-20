@@ -12,10 +12,13 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class SyncData
+    public partial class User
     {
-        public int sync_id { get; set; }
-        public int user_id { get; set; }
-        public Nullable<System.DateTime> last_sync { get; set; }
+        public int IDUser { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public Nullable<int> IDRole { get; set; }
+    
+        public virtual Role Role { get; set; }
     }
 }

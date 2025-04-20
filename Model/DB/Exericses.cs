@@ -12,21 +12,22 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Exercises
+    public partial class Exericses
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Exercises()
+        public Exericses()
         {
-            this.WorkoutExercises = new HashSet<WorkoutExercises>();
+            this.WorkoutExericises = new HashSet<WorkoutExericises>();
         }
     
-        public int exercise_id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string video_url { get; set; }
-        public string muscle_group { get; set; }
+        public int IDExercises { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> IDMuscleType { get; set; }
+        public string Photo { get; set; }
     
+        public virtual MuslceType MuslceType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkoutExercises> WorkoutExercises { get; set; }
+        public virtual ICollection<WorkoutExericises> WorkoutExericises { get; set; }
     }
 }

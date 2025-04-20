@@ -12,16 +12,18 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Payments
+    public partial class MuslceType
     {
-        public int payment_id { get; set; }
-        public Nullable<int> client_id { get; set; }
-        public Nullable<int> trainer_id { get; set; }
-        public double amount { get; set; }
-        public System.DateTime date { get; set; }
-        public string status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MuslceType()
+        {
+            this.Exericses = new HashSet<Exericses>();
+        }
     
-        public virtual Clients Clients { get; set; }
-        public virtual Trainers Trainers { get; set; }
+        public int IDMuscleType { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Exericses> Exericses { get; set; }
     }
 }

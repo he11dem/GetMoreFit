@@ -1,12 +1,9 @@
-﻿using MaterialDesignThemes.Wpf;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GetMoreFit.Classes;
+using GetMoreFit.Model.DB;
+using MaterialDesignThemes.Wpf;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace GetMoreFit
 {
@@ -15,6 +12,8 @@ namespace GetMoreFit
     /// </summary>
     public partial class App : Application
     {
+        public static FitnessGetMoreFitEntities db = new FitnessGetMoreFitEntities();
+        public static Trainers currentTrainer = null;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -29,6 +28,20 @@ namespace GetMoreFit
             Application.Current.Resources["MaterialDesignPaper"] = FindResource("BackgroundPrimaryBrush");
             Application.Current.Resources["MaterialDesignDivider"] = FindResource("BorderColorBrush");
         }
+
+        public App()
+        {
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
+        }
+
+        private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            e.Handled = true;
+            MessageClass.ErrorMessage(e.Exception.Message);
+        }
+
+
+
     }
 
 

@@ -12,12 +12,12 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Messages
+    public partial class sysdiagrams
     {
-        public int message_id { get; set; }
-        public int sender_id { get; set; }
-        public int receiver_id { get; set; }
-        public string content { get; set; }
-        public Nullable<System.DateTime> timestamp { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

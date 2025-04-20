@@ -18,39 +18,33 @@ namespace GetMoreFit.Model.DB
         public Clients()
         {
             this.ClientProgress = new HashSet<ClientProgress>();
-            this.DietPlans = new HashSet<DietPlans>();
-            this.Payments = new HashSet<Payments>();
-            this.RecoveryPlans = new HashSet<RecoveryPlans>();
-            this.Reports = new HashSet<Reports>();
+            this.Goals = new HashSet<Goals>();
+            this.GroupParticipants = new HashSet<GroupParticipants>();
+            this.NutritionPlans = new HashSet<NutritionPlans>();
             this.Reviews = new HashSet<Reviews>();
-            this.WorkoutPlans = new HashSet<WorkoutPlans>();
-            this.GroupWorkouts = new HashSet<GroupWorkouts>();
+            this.Workouts = new HashSet<Workouts>();
         }
     
-        public int client_id { get; set; }
-        public string name { get; set; }
-        public Nullable<int> age { get; set; }
-        public Nullable<double> weight { get; set; }
-        public Nullable<double> height { get; set; }
-        public string goal { get; set; }
-        public Nullable<int> trainer_id { get; set; }
+        public int IDClient { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public Nullable<int> Age { get; set; }
+        public Nullable<decimal> Weight { get; set; }
+        public Nullable<decimal> Height { get; set; }
+        public Nullable<System.DateTime> RegistrationDate { get; set; }
+        public string Goal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientProgress> ClientProgress { get; set; }
-        public virtual Trainers Trainers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DietPlans> DietPlans { get; set; }
+        public virtual ICollection<Goals> Goals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payments> Payments { get; set; }
+        public virtual ICollection<GroupParticipants> GroupParticipants { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RecoveryPlans> RecoveryPlans { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reports> Reports { get; set; }
+        public virtual ICollection<NutritionPlans> NutritionPlans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reviews> Reviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkoutPlans> WorkoutPlans { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GroupWorkouts> GroupWorkouts { get; set; }
+        public virtual ICollection<Workouts> Workouts { get; set; }
     }
 }

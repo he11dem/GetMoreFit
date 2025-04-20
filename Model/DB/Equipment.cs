@@ -14,9 +14,12 @@ namespace GetMoreFit.Model.DB
     
     public partial class Equipment
     {
-        public int equipment_id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string status { get; set; }
+        public int IDEquipment { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public Nullable<int> IDStatusEquip { get; set; }
+    
+        public virtual StatusEquipment StatusEquipment { get; set; }
     }
 }

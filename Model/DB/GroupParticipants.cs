@@ -12,15 +12,13 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class WorkoutPlans
+    public partial class GroupParticipants
     {
-        public int plan_id { get; set; }
-        public Nullable<int> client_id { get; set; }
-        public Nullable<int> workout_id { get; set; }
-        public System.DateTime date { get; set; }
-        public string status { get; set; }
+        public int IDParticipant { get; set; }
+        public Nullable<int> IDGroup { get; set; }
+        public Nullable<int> IDClient { get; set; }
     
         public virtual Clients Clients { get; set; }
-        public virtual Workouts Workouts { get; set; }
+        public virtual Group_Trainings Group_Trainings { get; set; }
     }
 }

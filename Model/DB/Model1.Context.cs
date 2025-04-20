@@ -13,10 +13,10 @@ namespace GetMoreFit.Model.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FitnessAppEntities : DbContext
+    public partial class FitnessGetMoreFitEntities : DbContext
     {
-        public FitnessAppEntities()
-            : base("name=FitnessAppEntities")
+        public FitnessGetMoreFitEntities()
+            : base("name=FitnessGetMoreFitEntities")
         {
         }
     
@@ -25,24 +25,25 @@ namespace GetMoreFit.Model.DB
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Articles> Articles { get; set; }
         public virtual DbSet<ClientProgress> ClientProgress { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }
-        public virtual DbSet<DietPlans> DietPlans { get; set; }
         public virtual DbSet<Equipment> Equipment { get; set; }
-        public virtual DbSet<Exercises> Exercises { get; set; }
-        public virtual DbSet<GroupWorkouts> GroupWorkouts { get; set; }
-        public virtual DbSet<Meals> Meals { get; set; }
-        public virtual DbSet<Messages> Messages { get; set; }
-        public virtual DbSet<Payments> Payments { get; set; }
-        public virtual DbSet<RecoveryPlans> RecoveryPlans { get; set; }
-        public virtual DbSet<Reports> Reports { get; set; }
+        public virtual DbSet<Exericses> Exericses { get; set; }
+        public virtual DbSet<Goals> Goals { get; set; }
+        public virtual DbSet<Group_Trainings> Group_Trainings { get; set; }
+        public virtual DbSet<GroupParticipants> GroupParticipants { get; set; }
+        public virtual DbSet<MuslceType> MuslceType { get; set; }
+        public virtual DbSet<NutritionPlans> NutritionPlans { get; set; }
         public virtual DbSet<Reviews> Reviews { get; set; }
-        public virtual DbSet<Settings> Settings { get; set; }
-        public virtual DbSet<SyncData> SyncData { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Specialization> Specialization { get; set; }
+        public virtual DbSet<StatusEquipment> StatusEquipment { get; set; }
+        public virtual DbSet<StatusGoals> StatusGoals { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Trainers> Trainers { get; set; }
-        public virtual DbSet<WorkoutExercises> WorkoutExercises { get; set; }
-        public virtual DbSet<WorkoutPlans> WorkoutPlans { get; set; }
+        public virtual DbSet<TypeWorkouts> TypeWorkouts { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<WorkoutExericises> WorkoutExericises { get; set; }
         public virtual DbSet<Workouts> Workouts { get; set; }
     }
 }

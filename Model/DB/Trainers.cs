@@ -17,32 +17,23 @@ namespace GetMoreFit.Model.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Trainers()
         {
-            this.Articles = new HashSet<Articles>();
-            this.Clients = new HashSet<Clients>();
-            this.GroupWorkouts = new HashSet<GroupWorkouts>();
-            this.Payments = new HashSet<Payments>();
-            this.Reports = new HashSet<Reports>();
+            this.Group_Trainings = new HashSet<Group_Trainings>();
             this.Reviews = new HashSet<Reviews>();
             this.Workouts = new HashSet<Workouts>();
         }
     
-        public int trainer_id { get; set; }
-        public string name { get; set; }
-        public string specialization { get; set; }
-        public string schedule { get; set; }
+        public int IDTrainers { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public Nullable<int> IDSpec { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Articles> Articles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clients> Clients { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GroupWorkouts> GroupWorkouts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payments> Payments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reports> Reports { get; set; }
+        public virtual ICollection<Group_Trainings> Group_Trainings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reviews> Reviews { get; set; }
+        public virtual Specialization Specialization { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Workouts> Workouts { get; set; }
     }

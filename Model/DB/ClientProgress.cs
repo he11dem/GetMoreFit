@@ -14,13 +14,13 @@ namespace GetMoreFit.Model.DB
     
     public partial class ClientProgress
     {
-        public int progress_id { get; set; }
-        public Nullable<int> client_id { get; set; }
-        public System.DateTime date { get; set; }
-        public Nullable<double> weight { get; set; }
-        public string measurements { get; set; }
-        public Nullable<double> strength { get; set; }
-        public Nullable<double> endurance { get; set; }
+        public int IDProgress { get; set; }
+        public Nullable<int> IDClient { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<decimal> Weight { get; set; }
+        public Nullable<decimal> Chest { get; set; }
+        public Nullable<decimal> Waist { get; set; }
+        public Nullable<decimal> Hips { get; set; }
     
         public virtual Clients Clients { get; set; }
     }

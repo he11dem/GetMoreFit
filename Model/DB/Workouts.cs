@@ -17,23 +17,24 @@ namespace GetMoreFit.Model.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Workouts()
         {
-            this.GroupWorkouts = new HashSet<GroupWorkouts>();
-            this.WorkoutExercises = new HashSet<WorkoutExercises>();
-            this.WorkoutPlans = new HashSet<WorkoutPlans>();
+            this.Group_Trainings = new HashSet<Group_Trainings>();
+            this.WorkoutExericises = new HashSet<WorkoutExericises>();
         }
     
-        public int workout_id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string type { get; set; }
-        public Nullable<int> trainer_id { get; set; }
+        public int IDWorkout { get; set; }
+        public Nullable<int> IDClient { get; set; }
+        public Nullable<int> IDTrainers { get; set; }
+        public Nullable<System.DateTime> DateWorkout { get; set; }
+        public Nullable<int> Duration { get; set; }
+        public Nullable<int> IDType { get; set; }
+        public string Notes { get; set; }
     
+        public virtual Clients Clients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GroupWorkouts> GroupWorkouts { get; set; }
+        public virtual ICollection<Group_Trainings> Group_Trainings { get; set; }
         public virtual Trainers Trainers { get; set; }
+        public virtual TypeWorkouts TypeWorkouts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkoutExercises> WorkoutExercises { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkoutPlans> WorkoutPlans { get; set; }
+        public virtual ICollection<WorkoutExericises> WorkoutExericises { get; set; }
     }
 }

@@ -12,15 +12,18 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Reports
+    public partial class StatusGoals
     {
-        public int report_id { get; set; }
-        public Nullable<int> client_id { get; set; }
-        public Nullable<int> trainer_id { get; set; }
-        public System.DateTime date { get; set; }
-        public string content { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public StatusGoals()
+        {
+            this.Goals = new HashSet<Goals>();
+        }
     
-        public virtual Clients Clients { get; set; }
-        public virtual Trainers Trainers { get; set; }
+        public int IDStatusGoals { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Goals> Goals { get; set; }
     }
 }

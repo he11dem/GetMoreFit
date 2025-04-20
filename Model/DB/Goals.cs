@@ -12,22 +12,15 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class DietPlans
+    public partial class Goals
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DietPlans()
-        {
-            this.Meals = new HashSet<Meals>();
-        }
-    
-        public int diet_id { get; set; }
-        public Nullable<int> client_id { get; set; }
-        public Nullable<int> calories { get; set; }
-        public string macronutrients { get; set; }
-        public string description { get; set; }
+        public int IDGoals { get; set; }
+        public Nullable<int> IDClient { get; set; }
+        public Nullable<decimal> TargetWieght { get; set; }
+        public Nullable<System.DateTime> TargetDate { get; set; }
+        public Nullable<int> IDStatusGoals { get; set; }
     
         public virtual Clients Clients { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Meals> Meals { get; set; }
+        public virtual StatusGoals StatusGoals { get; set; }
     }
 }

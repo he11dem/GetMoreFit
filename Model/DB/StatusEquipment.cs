@@ -12,22 +12,18 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class GroupWorkouts
+    public partial class StatusEquipment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GroupWorkouts()
+        public StatusEquipment()
         {
-            this.Clients = new HashSet<Clients>();
+            this.Equipment = new HashSet<Equipment>();
         }
     
-        public int group_id { get; set; }
-        public Nullable<int> trainer_id { get; set; }
-        public Nullable<int> workout_id { get; set; }
-        public System.DateTime date { get; set; }
+        public int IDStatusEquip { get; set; }
+        public string Name { get; set; }
     
-        public virtual Trainers Trainers { get; set; }
-        public virtual Workouts Workouts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clients> Clients { get; set; }
+        public virtual ICollection<Equipment> Equipment { get; set; }
     }
 }

@@ -12,16 +12,23 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Reviews
+    public partial class Group_Trainings
     {
-        public int IDReview { get; set; }
-        public Nullable<int> IDCleint { get; set; }
-        public Nullable<int> IDTrainer { get; set; }
-        public Nullable<int> Rating { get; set; }
-        public string Comment { get; set; }
-        public Nullable<System.DateTime> RewievDate { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Group_Trainings()
+        {
+            this.GroupParticipants = new HashSet<GroupParticipants>();
+        }
     
-        public virtual Clients Clients { get; set; }
+        public int IDGroup { get; set; }
+        public Nullable<int> IDTrainer { get; set; }
+        public Nullable<int> IDWorkout { get; set; }
+        public Nullable<int> MaxParticipants { get; set; }
+        public Nullable<int> CurrentParticipants { get; set; }
+    
         public virtual Trainers Trainers { get; set; }
+        public virtual Workouts Workouts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GroupParticipants> GroupParticipants { get; set; }
     }
 }

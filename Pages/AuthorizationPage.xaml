@@ -17,12 +17,11 @@
             <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect 
-                Color="#AA000000" 
-                Direction="320" 
-                ShadowDepth="4" 
-                BlurRadius="8" 
-                Opacity="0.7"/>
+                    <DropShadowEffect Color="#AA000000" 
+                                      Direction="320" 
+                                      ShadowDepth="4" 
+                                      BlurRadius="8" 
+                                      Opacity="0.7"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -115,6 +114,18 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+                <TextBlock x:Name="txtError" 
+                           Foreground="#B00000" 
+                           Margin="0,55,0,0" 
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="3"
+                           FontSize="18"
+                           Width="250"
+                           Height="60"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           TextWrapping="Wrap"/>
                 <TextBlock Text="C возвращением!" 
                            FontSize="30"
                            HorizontalAlignment="Center" 
@@ -137,6 +148,7 @@
                            HorizontalAlignment="Right" 
                            VerticalAlignment="Top"
                            Foreground="Black"
+                           FontFamily="Century Gothic"
                            FontWeight="Bold"
                            Grid.Row="1" 
                            Grid.Column="0"
@@ -147,6 +159,7 @@
                            HorizontalAlignment="Right" 
                            VerticalAlignment="Top"
                            Foreground="Black"
+                           FontFamily="Century Gothic"
                            FontWeight="Bold"
                            Grid.Row="2" 
                            Grid.Column="0"
@@ -169,7 +182,18 @@
                          Width="450"
                          Grid.ColumnSpan="2"
                          >
-                    <TextBox.Template>
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="BorderBrush" Value="LightGray"/>
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="">
+                                    <Setter Property="BorderBrush" Value="Red"/>
+                                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                        <TextBox.Template>
                         <ControlTemplate TargetType="{x:Type TextBox}">
                             <Border Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
@@ -236,7 +260,7 @@
                         FontFamily="Century Gothic"
                         Foreground="White"
                         Grid.ColumnSpan="2"
-                        Margin="40 0 40 0">
+                        Margin="40 0 40 0" Click="LoginBtn_Click">
                 </Button>
                 <TextBlock Text="Нет учетной записи?" 
                            FontSize="18"

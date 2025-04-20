@@ -12,13 +12,18 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Articles
+    public partial class Specialization
     {
-        public int article_id { get; set; }
-        public string title { get; set; }
-        public string content { get; set; }
-        public Nullable<int> author_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Specialization()
+        {
+            this.Trainers = new HashSet<Trainers>();
+        }
     
-        public virtual Trainers Trainers { get; set; }
+        public int IDSpec { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Trainers> Trainers { get; set; }
     }
 }

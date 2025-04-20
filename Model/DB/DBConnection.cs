@@ -4,6 +4,6 @@ namespace GetMoreFit.Model.DB
 {
     internal class DBConnection
     {
-        public static FitnessAppEntities fitness = new FitnessAppEntities();
+        public static FitnessGetMoreFitEntities fitness = new FitnessGetMoreFitEntities();
     }
 }

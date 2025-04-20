@@ -12,13 +12,16 @@ namespace GetMoreFit.Model.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Meals
+    public partial class WorkoutExericises
     {
-        public int meal_id { get; set; }
-        public Nullable<int> diet_id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
+        public int IDWorkoutExericses { get; set; }
+        public Nullable<int> IDWorkout { get; set; }
+        public Nullable<int> IDExercises { get; set; }
+        public Nullable<int> Sets { get; set; }
+        public Nullable<int> Reps { get; set; }
+        public Nullable<decimal> WeightUsed { get; set; }
     
-        public virtual DietPlans DietPlans { get; set; }
+        public virtual Exericses Exericses { get; set; }
+        public virtual Workouts Workouts { get; set; }
     }
 }
