@@ -10,7 +10,6 @@
       MinHeight="600"
       Title="AuthorizationPage">
     <Page.Resources>
-        <!-- Современный стиль текста с тенью -->
         <Style x:Key="ModernTextWithShadow" TargetType="TextBlock">
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="White"/>
@@ -97,9 +96,17 @@
                 Width="1000" 
                 Height="650" 
                 Grid.ColumnSpan="3" 
+                BorderThickness="5"
+                BorderBrush="#000046"
                 Grid.RowSpan="3" 
                 CornerRadius="20" 
                 Background="White">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30"
+                      ShadowDepth="3"
+                      Color="#20000000"
+                      Opacity="0.4"/>
+            </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MinWidth="120"/>
@@ -262,30 +269,7 @@
                         Grid.ColumnSpan="2"
                         Margin="40 0 40 0" Click="LoginBtn_Click">
                 </Button>
-                <TextBlock Text="Нет учетной записи?" 
-                           FontSize="18"
-                           HorizontalAlignment="Left" 
-                           VerticalAlignment="Center"
-                           Foreground="Black"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Grid.Row="3"
-                           Margin="10 0 0 35">
-                </TextBlock>
-                <TextBlock FontSize="18"
-                           HorizontalAlignment="Left" 
-                           VerticalAlignment="Center"
-                           Foreground="Black"
-                           Grid.Column="1"
-                           Grid.Row="3"
-                           Margin="25 0 0 35">
-            <Hyperlink NavigateUri="/Pages/RequestPassPage.xaml" 
-                       FontFamily="Century Gothic"
-                       TextDecorations="None"
-               Foreground="Black"
-               RequestNavigate="HyperLink_RegistrNavigate">Создайте себе учетную запись!
-            </Hyperlink>
-                </TextBlock>
+                
             </Grid>
         </Border>
     </Grid>

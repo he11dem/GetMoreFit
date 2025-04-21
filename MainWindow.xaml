@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GetMoreFit"
         mc:Ignorable="d"
         MinWidth="1200" 
         MinHeight="750"
@@ -11,8 +10,12 @@
         ResizeMode="CanResize"
         WindowStyle="None"
         Title="MainWindow" Height="1080" Width="1920" WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
         >
+
     <Grid>
-        <Frame x:Name="NewFrame" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="NewFrame" NavigationUIVisibility="Hidden">
+            
+        </Frame>
     </Grid>
 </Window>

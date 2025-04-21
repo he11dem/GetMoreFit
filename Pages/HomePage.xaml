@@ -43,9 +43,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="CloseBtn" Grid.Column="1" Grid.ColumnSpan="2" Margin="89,-1,231,112" Click="CloseBtn_Click"></Button>
-        <Button x:Name="MinumazeBtn" Grid.Column="2" Grid.ColumnSpan="2" Margin="124,-2,196,113" Click="MinumazeBtn_Click"></Button>
-            <Border Margin="15,13,244,17" Grid.RowSpan="7" CornerRadius="20" Grid.ColumnSpan="2">
+        <Border Margin="15,25,244,24" Grid.RowSpan="7" CornerRadius="20" Grid.ColumnSpan="2">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Color="#6699FF" Offset="0.0"/>
@@ -349,7 +347,7 @@
                 </Button>
             </Grid>
         </Border>
-        <Border Margin="94,11,135,22" Grid.RowSpan="7" CornerRadius="20" Grid.Column="1">
+        <Border Margin="94,24,135,22" Grid.RowSpan="7" CornerRadius="20" Grid.Column="1">
             <!-- Фон с градиентом -->
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -409,7 +407,7 @@
                    Margin="0,0,0,20"/>
             </Grid>
         </Border>
-        <Border Margin="200,14,29,28" Grid.RowSpan="7" CornerRadius="20" Grid.Column="5">
+        <Border Margin="200,23,29,28" Grid.RowSpan="7" CornerRadius="20" Grid.Column="5">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Color="#6699FF" Offset="1.0"/>

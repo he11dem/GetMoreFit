@@ -35,11 +35,6 @@ namespace GetMoreFit.Pages
             e.Handled = true;
         }
 
-        private void HyperLink_RegistrNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            NavigationService.Navigate(new RegistrationPage());
-            e.Handled = true;
-        }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
