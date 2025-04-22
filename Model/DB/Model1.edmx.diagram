@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b351fdaf09d044f58807516535524b28" Name="Diagram1">
+      <Diagram DiagramId="6e7f9803aedf426595de210c5e103feb" Name="Diagram1">
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.ClientProgress" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.Clients" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="FitnessGetMoreFitModel.Equipment" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessGetMoreFitModel.Equipment" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.Exericses" Width="1.5" PointX="9" PointY="19.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.Goals" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.Group_Trainings" Width="1.5" PointX="8.25" PointY="15.5" IsExpanded="true" />
@@ -15,14 +15,14 @@
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.MuslceType" Width="1.5" PointX="6.75" PointY="20" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.NutritionPlans" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.Reviews" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FitnessGetMoreFitModel.Role" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FitnessGetMoreFitModel.Specialization" Width="1.5" PointX="1.5" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="FitnessGetMoreFitModel.StatusEquipment" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessGetMoreFitModel.Role" Width="1.5" PointX="1.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessGetMoreFitModel.Specialization" Width="1.5" PointX="1.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessGetMoreFitModel.StatusEquipment" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.StatusGoals" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FitnessGetMoreFitModel.Trainers" Width="1.5" PointX="3.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessGetMoreFitModel.Trainers" Width="1.5" PointX="3.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.TypeWorkouts" Width="1.5" PointX="3.75" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="FitnessGetMoreFitModel.User" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessGetMoreFitModel.User" Width="1.5" PointX="1.5" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.WorkoutExericises" Width="1.5" PointX="11.25" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.Workouts" Width="1.5" PointX="6" PointY="15.125" IsExpanded="true" />
         <AssociationConnector Association="FitnessGetMoreFitModel.FK_ClientProgress_Clients" ManuallyRouted="false" />
@@ -41,6 +41,7 @@
         <AssociationConnector Association="FitnessGetMoreFitModel.FK_Reviews_Trainers" ManuallyRouted="false" />
         <AssociationConnector Association="FitnessGetMoreFitModel.FK_User_Role" ManuallyRouted="false" />
         <AssociationConnector Association="FitnessGetMoreFitModel.FK_Trainers_Specialization" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessGetMoreFitModel.FK_Trainers_User" ManuallyRouted="false" />
         <AssociationConnector Association="FitnessGetMoreFitModel.FK_Workouts_Trainers" ManuallyRouted="false" />
         <AssociationConnector Association="FitnessGetMoreFitModel.FK_Workouts_TypeWorkouts" ManuallyRouted="false" />
         <AssociationConnector Association="FitnessGetMoreFitModel.FK_WorkoutExericises_Workouts" ManuallyRouted="false" />

@@ -1,5 +1,4 @@
-﻿using GetMoreFit.Model;
-using GetMoreFit.Model.DB;
+﻿using GetMoreFit.Model.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,21 +17,19 @@ using System.Windows.Shapes;
 namespace GetMoreFit.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для TestTestPage.xaml
+    /// Логика взаимодействия для AdminHomePage.xaml
     /// </summary>
-    public partial class TestTestPage : Page
+    public partial class AdminHomePage : Page
     {
-        public static List<Product> products { get; set; }
-        public TestTestPage()
+        public static List<Trainers> trainers = new List<Trainers>();
+        public AdminHomePage()
         {
             InitializeComponent();
+        }
 
-            products = new List<Product>(DBConnection.lopushEntities.Product.ToList());
-
-
-
-            TaskUserLV.ItemsSource = new List<Product>(DBConnection.lopushEntities.Product.ToList());
-            this.DataContext = this;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ListTrainersPage());
         }
     }
 }

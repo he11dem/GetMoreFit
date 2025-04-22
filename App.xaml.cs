@@ -13,7 +13,7 @@ namespace GetMoreFit
     public partial class App : Application
     {
         public static FitnessGetMoreFitEntities db = new FitnessGetMoreFitEntities();
-        public static Trainers currentTrainer = null;
+        public static User currentUser = null;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);

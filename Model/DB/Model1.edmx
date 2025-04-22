@@ -157,6 +157,7 @@
           <Property Name="IDSpec" Type="int" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="Phone" Type="varchar(max)" />
+          <Property Name="IDUser" Type="int" />
         </EntityType>
         <EntityType Name="TypeWorkouts">
           <Key>
@@ -353,6 +354,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Trainers_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Trainers" Type="Self.Trainers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="Trainers">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -496,6 +509,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Trainers_Specialization" Association="Self.FK_Trainers_Specialization">
             <End Role="Specialization" EntitySet="Specialization" />
+            <End Role="Trainers" EntitySet="Trainers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trainers_User" Association="Self.FK_Trainers_User">
+            <End Role="User" EntitySet="User" />
             <End Role="Trainers" EntitySet="Trainers" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
@@ -705,9 +722,11 @@
           <Property Name="IDSpec" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUser" Type="Int32" />
           <NavigationProperty Name="Group_Trainings" Relationship="Self.FK_Group_Trainings_Trainers" FromRole="Trainers" ToRole="Group_Trainings" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Trainers" FromRole="Trainers" ToRole="Reviews" />
           <NavigationProperty Name="Specialization" Relationship="Self.FK_Trainers_Specialization" FromRole="Trainers" ToRole="Specialization" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Trainers_User" FromRole="Trainers" ToRole="User" />
           <NavigationProperty Name="Workouts" Relationship="Self.FK_Workouts_Trainers" FromRole="Trainers" ToRole="Workouts" />
         </EntityType>
         <EntityType Name="TypeWorkouts">
@@ -727,6 +746,7 @@
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDRole" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Trainers" Relationship="Self.FK_Trainers_User" FromRole="User" ToRole="Trainers" />
         </EntityType>
         <EntityType Name="WorkoutExericises">
           <Key>
@@ -950,6 +970,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Trainers_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Trainers" Type="Self.Trainers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="Trainers">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Workouts_Trainers">
           <End Role="Trainers" Type="Self.Trainers" Multiplicity="0..1" />
           <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
@@ -1069,6 +1101,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Trainers_Specialization" Association="Self.FK_Trainers_Specialization">
             <End Role="Specialization" EntitySet="Specialization" />
+            <End Role="Trainers" EntitySet="Trainers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trainers_User" Association="Self.FK_Trainers_User">
+            <End Role="User" EntitySet="User" />
             <End Role="Trainers" EntitySet="Trainers" />
           </AssociationSet>
           <AssociationSet Name="FK_Workouts_Trainers" Association="Self.FK_Workouts_Trainers">
@@ -1256,6 +1292,7 @@
                 <ScalarProperty Name="IDSpec" ColumnName="IDSpec" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

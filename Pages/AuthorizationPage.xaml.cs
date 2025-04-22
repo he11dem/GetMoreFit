@@ -1,4 +1,5 @@
 ﻿using GetMoreFit.Classes;
+using GetMoreFit.Model.DB;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -17,11 +18,12 @@ using System.Windows.Shapes;
 
 namespace GetMoreFit.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthorizationPage.xaml
-    /// </summary>
+    public static class UserInfo {
+        public static User User { get; set; }
+    }
     public partial class AuthorizationPage : Page
     {
+        public static List<User> users = new List<User>();
         public AuthorizationPage()
         {
             InitializeComponent();
@@ -42,7 +44,7 @@ namespace GetMoreFit.Pages
             bool isValid = true;
             string login = LoginTbx.Text.Trim();
             string password = PasswordPbx.Password.Trim();
-
+            users = new List<User>(DBConnection.fitness.User.ToList());
 
             if (string.IsNullOrEmpty(LoginTbx.Text))
             {
@@ -63,20 +65,11 @@ namespace GetMoreFit.Pages
             {
                 MessageClass.ErrorMessage("Пароль должен содержать минимум 3 символа!");
             }
-
-            if (login == "ivanov" && password == "hash1")
+            User currentUser = users.FirstOrDefault(x => x.UserName == login);
+            if (App.currentUser == null)
             {
-                NavigationService.Navigate(new ModeratorPage());
-                return;
-            }   
-            if (login == "sidorov" && password == "hash3")
-            {
-                NavigationService.Navigate(new AdminPage());
-            }
-            App.currentTrainer = App.db.Trainers.FirstOrDefault(x => x.Name == login);
-            if (App.currentTrainer == null)
-            {
-                NavigationService.Navigate(new TrainersPage());
+                UserInfo.User = currentUser;
+                NavigationService.Navigate(new SlidePanelPage(currentUser));
                 return;
             }
             MessageClass.ErrorMessage("Неверный логин или пароль.");

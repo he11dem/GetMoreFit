@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace GetMoreFit.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для ModeratorPage.xaml
+    /// Логика взаимодействия для ListClientsPage.xaml
     /// </summary>
-    public partial class ModeratorPage : Page
+    public partial class ListClientsPage : Page
     {
-        public ModeratorPage()
+        public ListClientsPage()
         {
             InitializeComponent();
         }

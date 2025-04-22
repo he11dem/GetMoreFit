@@ -181,7 +181,7 @@
                                                 <!-- Возврат с пружинным эффектом -->
                                                 <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
                                                                Storyboard.TargetProperty="Background.Color">
-                                                    <LinearColorKeyFrame KeyTime="0:0:0.1" Value="#4D88FF"/>
+                                                    <LinearColorKeyFrame KeyTime="0:0:0.1" Value="#000046"/>
                                                     <LinearColorKeyFrame KeyTime="0:0:0.3" Value="#6699FF"/>
                                                 </ColorAnimationUsingKeyFrames>
 
@@ -215,6 +215,7 @@
                 </Setter>
             </Style>
 
+            <FontFamily x:Key="AppFont">pack://application:,,,/Resources/Fonts/#Manrope</FontFamily>
 
             <Color x:Key="PrimaryHueLight">#D84315</Color>
             <Color x:Key="PrimaryHueMid">#DFC8AF</Color>

@@ -8,6 +8,6 @@ namespace GetMoreFit.Model.DB
 {
     public class DBConnection
     {
-        public static lopushEntities lopushEntities = new lopushEntities();
+        public static FitnessGetMoreFitEntities fitness = new FitnessGetMoreFitEntities();
     }
 }

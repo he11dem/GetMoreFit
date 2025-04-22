@@ -24,8 +24,12 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <FontFamily x:Key="CustomFont">
+            pack://application:,,,/fonts/#Manrope-VariableFont_wght
+        </FontFamily>
     </Page.Resources>
-    <Grid Background="White">
+    <Grid Background="#ebebeb">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -185,9 +189,11 @@
                    FontSize="26"
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top"
-                   Margin="91,57,0,0"
+                   Margin="86,57,0,0"
                    Foreground="Black" 
-                   Width="128">
+                   Style="{StaticResource MaterialDesignCaptionTextBlock}" 
+                   FontFamily="Manrope"
+                   Width="141">
                 </TextBlock>
 
                 <TextBlock Text="как тренер." 
@@ -197,7 +203,8 @@
                    Margin="86,93,0,0"
                    Foreground="Gray" 
                    Width="141"
-                           FontFamily="TT Hoves Pro">
+                   Style="{StaticResource MaterialDesignBody1TextBlock}"
+                           FontFamily="AppFont">
 
                 </TextBlock>
 

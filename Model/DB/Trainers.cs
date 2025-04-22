@@ -28,12 +28,14 @@ namespace GetMoreFit.Model.DB
         public Nullable<int> IDSpec { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public Nullable<int> IDUser { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group_Trainings> Group_Trainings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reviews> Reviews { get; set; }
         public virtual Specialization Specialization { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Workouts> Workouts { get; set; }
     }

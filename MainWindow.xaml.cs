@@ -18,7 +18,7 @@ namespace GetMoreFit
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new SlidePanelPage());
+            MainFrame.Navigate(new HomePage());
         }
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
