@@ -213,12 +213,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\AnimatedFrame.cs" />
     <Compile Include="Pages\SlidePanelPage.xaml.cs">
       <DependentUpon>SlidePanelPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SlidePanelWindow.xaml.cs">
-      <DependentUpon>SlidePanelWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Classes\WipeTransition.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -262,10 +261,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TrainersPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\SlidePanelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

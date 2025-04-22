@@ -20,9 +20,16 @@ namespace GetMoreFit.Pages
     /// </summary>
     public partial class SlidePanelPage : Page
     {
+        
         public SlidePanelPage()
         {
             InitializeComponent();
+
+        }
+
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NewFrame.Navigate(new AdminPage());
         }
     }
 }

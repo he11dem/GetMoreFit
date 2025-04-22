@@ -7,7 +7,29 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="AdminPage">
-    <Grid Background="White">
-       
+    <Grid Background="White" Margin="130 0 0 0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Height="Auto" Width="Auto">
+            <TextBlock Text="Здравствуй, " 
+                       FontSize="30"
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"
+                       Foreground="Black"
+                       Grid.Column="1"
+                       FontWeight="Medium"
+                       Margin="40 90 0 0"
+                       />
+        </StackPanel>
+            
     </Grid>
 </Page>
