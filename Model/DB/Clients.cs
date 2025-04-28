@@ -33,6 +33,7 @@ namespace GetMoreFit.Model.DB
         public Nullable<decimal> Height { get; set; }
         public Nullable<System.DateTime> RegistrationDate { get; set; }
         public string Goal { get; set; }
+        public string PhotoPath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientProgress> ClientProgress { get; set; }

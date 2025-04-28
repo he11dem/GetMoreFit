@@ -218,9 +218,9 @@
             <FontFamily x:Key="AppFont">pack://application:,,,/Resources/Fonts/#Manrope</FontFamily>
 
             <Color x:Key="PrimaryHueLight">#D84315</Color>
-            <Color x:Key="PrimaryHueMid">#DFC8AF</Color>
+            <Color x:Key="PrimaryHueMid">#6699FF</Color>
             <!--задний фон меню-->
-            <Color x:Key="PrimaryHueDark">#725B53</Color>
+            <Color x:Key="PrimaryHueDark">#6699FF</Color>
 
             <!-- Вторичные цвета -->
             <Color x:Key="SecondaryAccentLight">#DFC8AF</Color>
@@ -229,7 +229,7 @@
 
             <!-- Дополнительные цвета -->
             <Color x:Key="TextPrimary">#333333</Color>
-            <Color x:Key="TextSecondary">#757575</Color>
+            <Color x:Key="TextSecondary">#6699FF</Color>
             <Color x:Key="BackgroundPrimary">#D84315</Color>
             <Color x:Key="BorderColor">#BDBDBD</Color>
 

@@ -13,18 +13,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace GetMoreFit.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для SlidePanelPage.xaml
-    /// </summary>
+    public static class Clock
+    {
+        public static string CurrentTime => DateTime.Now.ToString("HH:mm:ss");
+    }
     public partial class SlidePanelPage : Page
     {
         public static User users { get; set; }
         public SlidePanelPage(User user)
         {
             InitializeComponent();
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1); // Обновление каждую секунду
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+            // Первоначальное отображение времени
+            UpdateTime();
             users = user;
 
 
@@ -45,8 +55,19 @@ namespace GetMoreFit.Pages
 
         }
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            UpdateTime();
+        }
+
+        private void UpdateTime()
+        {
+            TimeTextBlock.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
+
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
         {
+            
 
         }
 

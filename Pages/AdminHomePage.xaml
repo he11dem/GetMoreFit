@@ -9,6 +9,22 @@
       Title="AdminHomePage">
 
     <Page.Resources>
+
+        <Style x:Key="ModernTextWithShadow" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect 
+            Color="#AA000000" 
+            Direction="320" 
+            ShadowDepth="4" 
+            BlurRadius="8" 
+            Opacity="0.7"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="TrainerCardStyle" TargetType="Border">
             <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="Padding" Value="10"/>
@@ -58,30 +74,30 @@
         </Style>
     </Page.Resources>
 
-        <Grid Background="#ebebeb" Margin="130 0 0 0">
-            <!-- Колонки -->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <!-- Левая часть (приветствие, вода/калории) -->
-                <ColumnDefinition Width="*"/>
-                <!-- Центр (тренеры, воркшопы) -->
-                <ColumnDefinition Width="*"/>
-                <!-- Правая часть (статистика, цели) -->
-            </Grid.ColumnDefinitions>
+    <Grid Background="#ebebeb" Margin="130 0 0 0">
+        <!-- Колонки -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <!-- Левая часть (приветствие, вода/калории) -->
+            <ColumnDefinition Width="*"/>
+            <!-- Центр (тренеры, воркшопы) -->
+            <ColumnDefinition Width="*"/>
+            <!-- Правая часть (статистика, цели) -->
+        </Grid.ColumnDefinitions>
 
-            <!-- Строки -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <!-- Приветствие -->
-                <RowDefinition Height="Auto"/>
-                <!-- Статистика (Water/Calorie/Weight) -->
-                <RowDefinition Height="*"/>
-                <!-- Тренеры + Воркшопы -->
-                <RowDefinition Height="Auto"/>
-                <!-- Daily Hustling -->
-                <RowDefinition Height="Auto"/>
-                <!-- Milestone + Daily Target -->
-            </Grid.RowDefinitions>
+        <!-- Строки -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Приветствие -->
+            <RowDefinition Height="Auto"/>
+            <!-- Статистика (Water/Calorie/Weight) -->
+            <RowDefinition Height="*"/>
+            <!-- Тренеры + Воркшопы -->
+            <RowDefinition Height="Auto"/>
+            <!-- Daily Hustling -->
+            <RowDefinition Height="Auto"/>
+            <!-- Milestone + Daily Target -->
+        </Grid.RowDefinitions>
         <Border Grid.Column="0" 
                 Grid.Row="1" 
                 Height="400" 
@@ -102,7 +118,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                    <TextBlock Text="Лучшие тренера" 
+                <TextBlock Text="Лучшие тренера" 
                            FontWeight="Medium" 
                            HorizontalAlignment="Left" 
                            Margin="20 45 0 0" 
@@ -111,7 +127,139 @@
                            FontSize="22"
                            Grid.ColumnSpan="2"
                            />
-                <Button Style="{StaticResource MaterialDesignNumericUpDownButtonsStyle}" 
+                <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                        x:Name="TrainerBtn"
+                    HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Grid.Column="1"
+                        Foreground="#6699FF"
+                        Height="35"
+                        Grid.ColumnSpan="2"
+                        FontSize="22"
+                        Content="Посмотреть всех >>"
+                        Margin="0,38,10,0" Click="TrainerBtn_Click" ></Button>
+                <WrapPanel Grid.ColumnSpan="3" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" 
+                           Height="290" 
+                           Width="500" 
+                           Margin="0 55 0 0">
+                    <Border CornerRadius="10" 
+                            Padding="10" 
+                            Style="{StaticResource TrainerCardStyle}"
+                            Margin="0 10 10 10" 
+                            BorderBrush="#ebebeb"
+                            Height="250"
+                            Width="150">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/GetMoreFit;component/Resources/Images/caruselone.jpg" Stretch="UniformToFill"/>
+                        </Border.Background>
+                        <StackPanel>
+                            <TextBlock Text="Альмир Загиров" 
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" 
+                                       FontWeight="Bold" 
+                                       FontSize="14" 
+                                       Foreground="#ebebeb"
+                                       Style="{StaticResource ModernTextWithShadow}"/>
+                            <TextBlock Text="Fitness Trainer" 
+                                       HorizontalAlignment="Left" 
+                                       FontWeight="Bold"
+                                       Foreground="#ebebeb"
+                                       FontSize="15" 
+                                       Style="{StaticResource ModernTextWithShadow}" />
+
+                        </StackPanel>
+                    </Border>
+                    <Border CornerRadius="10" 
+                            Padding="10" 
+                            Style="{StaticResource TrainerCardStyle}"
+                            Margin="0 10 10 10" 
+                            BorderBrush="#ebebeb"
+                            Height="250"
+                            Width="150">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/GetMoreFit;component/Resources/Images/caruselone.jpg" Stretch="UniformToFill"/>
+                        </Border.Background>
+                        <StackPanel>
+                            <TextBlock Text="Альмир Загиров" 
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" 
+                                       FontWeight="Bold" 
+                                       FontSize="15" 
+                                       Foreground="#ebebeb"
+                                       Style="{StaticResource ModernTextWithShadow}"/>
+                            <TextBlock Text="Fitness Trainer" 
+                                       HorizontalAlignment="Left" 
+                                       FontWeight="Bold"
+                                       Foreground="#ebebeb"
+                                       FontSize="15" 
+                                       Style="{StaticResource ModernTextWithShadow}" />
+
+                        </StackPanel>
+                    </Border>
+                    <Border CornerRadius="10" 
+                            Padding="10" 
+                            Style="{StaticResource TrainerCardStyle}"
+                            Margin="0 10 10 10" 
+                            BorderBrush="#ebebeb"
+                            Height="250"
+                            Width="150">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/GetMoreFit;component/Resources/Images/caruselone.jpg" Stretch="UniformToFill"/>
+                        </Border.Background>
+                        <StackPanel>
+                            <TextBlock Text="Альмир Загиров" 
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" 
+                                       FontWeight="Bold" 
+                                       FontSize="15" 
+                                       Foreground="#ebebeb"
+                                       Style="{StaticResource ModernTextWithShadow}"/>
+                            <TextBlock Text="Fitness Trainer" 
+                                       HorizontalAlignment="Left" 
+                                       FontWeight="Bold"
+                                       Foreground="#ebebeb"
+                                       FontSize="15" 
+                                       Style="{StaticResource ModernTextWithShadow}" />
+
+                        </StackPanel>
+                    </Border>
+                </WrapPanel>
+
+            </Grid>
+        </Border>
+        <Border Grid.Column="0" 
+                Grid.Row="2" 
+                Height="400" 
+                VerticalAlignment="Top"
+                Margin="20 20 20 0" 
+                Background="#ffffff" 
+                CornerRadius="30">
+            <Border.Effect>
+                <DropShadowEffect 
+                        Color="#20000000"
+                        Direction="270"
+                        ShadowDepth="5"
+                        BlurRadius="15"
+                        Opacity="0.5"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Наши клиенты" 
+                           FontWeight="Medium" 
+                           HorizontalAlignment="Left" 
+                           Margin="20 45 0 0" 
+                           Style="{StaticResource MaterialDesignBody2TextBlock}"
+                           FontFamily="CustomFont"
+                           FontSize="22"
+                           Grid.ColumnSpan="2"/>
+                <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                        x:Name="ClientBtn"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Grid.Column="1"
@@ -120,96 +268,74 @@
                         Grid.ColumnSpan="2"
                         FontSize="22"
                         Content="Посмотреть всех >>"
-                        Margin="0,38,10,0" Click="Button_Click"></Button>
+                        Margin="0,38,10,0" Click="ClientBtn_Click" ></Button>
                 <WrapPanel Grid.ColumnSpan="3" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Center" 
-                           Height="270" 
-                           Width="500" 
-                           Margin="0 25 0 0">
+           HorizontalAlignment="Center" 
+           VerticalAlignment="Center" 
+           Height="290" 
+           Width="500" 
+           Margin="0 55 0 0">
                     <Border CornerRadius="10" 
-                            Padding="10" 
-                            Style="{StaticResource TrainerCardStyle}"
-                            Margin="0 10 10 10" 
-                            BorderBrush="#ebebeb"
-                            Height="250"
-                            Width="150">
+            Padding="10" 
+            Style="{StaticResource TrainerCardStyle}"
+            Margin="0 10 10 10" 
+            BorderBrush="#ebebeb"
+            Height="250"
+            Width="150">
                         <Border.Background>
                             <ImageBrush ImageSource="/GetMoreFit;component/Resources/Images/caruselone.jpg" Stretch="UniformToFill"/>
                         </Border.Background>
                         <StackPanel>
                             <TextBlock Text="Альмир Загиров" 
-                                       HorizontalAlignment="Left" 
-                                       VerticalAlignment="Center" 
-                                       FontWeight="Medium" 
-                                       FontSize="12" 
-                                       Foreground="#ebebeb"
-                                       Style="{StaticResource MaterialDesignBody1TextBlock}"/>
-                            <TextBlock Text="Fitness Trainer" 
-                                       HorizontalAlignment="Left" 
-                                       FontWeight="Medium"
-                                       Foreground="#ebebeb"
-                                       FontSize="12" 
-                                       Style="{StaticResource MaterialDesignBody1TextBlock}" />
-                            
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" 
+                       FontWeight="Bold" 
+                       FontSize="14" 
+                       Foreground="#ebebeb"
+                       Style="{StaticResource ModernTextWithShadow}"/>
                         </StackPanel>
                     </Border>
                     <Border CornerRadius="10" 
-                            Padding="10" 
-                            Style="{StaticResource TrainerCardStyle}"
-                            Margin="0 10 10 10" 
-                            BorderBrush="#ebebeb"
-                            Height="250"
-                            Width="150">        
+            Padding="10" 
+            Style="{StaticResource TrainerCardStyle}"
+            Margin="0 10 10 10" 
+            BorderBrush="#ebebeb"
+            Height="250"
+            Width="150">
                         <Border.Background>
                             <ImageBrush ImageSource="/GetMoreFit;component/Resources/Images/caruselone.jpg" Stretch="UniformToFill"/>
                         </Border.Background>
                         <StackPanel>
                             <TextBlock Text="Альмир Загиров" 
-                                       HorizontalAlignment="Left" 
-                                       VerticalAlignment="Center" 
-                                       FontWeight="Medium" 
-                                       FontSize="12" 
-                                       Foreground="#ebebeb"
-                                       Style="{StaticResource MaterialDesignBody1TextBlock}"/>
-                            <TextBlock Text="Fitness Trainer" 
-                                       HorizontalAlignment="Left" 
-                                       FontWeight="Medium"
-                                       Foreground="#ebebeb"
-                                       FontSize="12" 
-                                       Style="{StaticResource MaterialDesignBody1TextBlock}" />
-
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" 
+                       FontWeight="Bold" 
+                       FontSize="15" 
+                       Foreground="#ebebeb"
+                       Style="{StaticResource ModernTextWithShadow}"/>
                         </StackPanel>
                     </Border>
                     <Border CornerRadius="10" 
-                            Padding="10" 
-                            Style="{StaticResource TrainerCardStyle}"
-                            Margin="0 10 10 10" 
-                            BorderBrush="#ebebeb"
-                            Height="250"
-                            Width="150">
+            Padding="10" 
+            Style="{StaticResource TrainerCardStyle}"
+            Margin="0 10 10 10" 
+            BorderBrush="#ebebeb"
+            Height="250"
+            Width="150">
                         <Border.Background>
                             <ImageBrush ImageSource="/GetMoreFit;component/Resources/Images/caruselone.jpg" Stretch="UniformToFill"/>
                         </Border.Background>
                         <StackPanel>
                             <TextBlock Text="Альмир Загиров" 
-                                       HorizontalAlignment="Left" 
-                                       VerticalAlignment="Center" 
-                                       FontWeight="Medium" 
-                                       FontSize="12" 
-                                       Foreground="#ebebeb"
-                                       Style="{StaticResource MaterialDesignBody1TextBlock}"/>
-                            <TextBlock Text="Fitness Trainer" 
-                                       HorizontalAlignment="Left" 
-                                       FontWeight="Medium"
-                                       Foreground="#ebebeb"
-                                       FontSize="12" 
-                                       Style="{StaticResource MaterialDesignBody1TextBlock}" />
-
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" 
+                       FontWeight="Bold" 
+                       FontSize="15" 
+                       Foreground="#ebebeb"
+                       Style="{StaticResource ModernTextWithShadow}"/>
                         </StackPanel>
                     </Border>
                 </WrapPanel>
-
             </Grid>
         </Border>
     </Grid>

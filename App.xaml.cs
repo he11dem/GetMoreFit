@@ -12,7 +12,7 @@ namespace GetMoreFit
     /// </summary>
     public partial class App : Application
     {
-        public static FitnessGetMoreFitEntities db = new FitnessGetMoreFitEntities();
+        public static FitnessGetMoreFitEntities1 db = new FitnessGetMoreFitEntities1();
         public static User currentUser = null;
         protected override void OnStartup(StartupEventArgs e)
         {

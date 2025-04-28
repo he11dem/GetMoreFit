@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6e7f9803aedf426595de210c5e103feb" Name="Diagram1">
+      <Diagram DiagramId="baee26c4cff240c4b292587e75a1aba8" Name="Diagram1">
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.ClientProgress" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.Clients" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="FitnessGetMoreFitModel.Equipment" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />

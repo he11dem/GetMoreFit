@@ -27,9 +27,14 @@ namespace GetMoreFit.Pages
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TrainerBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ListTrainersPage());
+        }
+
+        private void ClientBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ListClientsPage());
         }
     }
 }

@@ -3,12 +3,570 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:GetMoreFit.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="ListClientsPage">
+    <Page.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border 
+                            Background="White"
+                            CornerRadius="4"
+                            Margin="4">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F5F5F5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-    <Grid>
-        
+
+
+
+        <Color x:Key="TabNormalColor">#F5F5F5</Color>
+        <Color x:Key="TabHoverColor">#E0E0E0</Color>
+        <Color x:Key="TabSelectedColor">#6699FF</Color>
+        <Color x:Key="TabPressedColor">#6699FF</Color>
+        <Color x:Key="TextNormalColor">#333333</Color>
+        <Color x:Key="TextSelectedColor">#FFFFFF</Color>
+
+        <Style TargetType="{x:Type TabItem}" x:Key="ModernAnimatedTabItem">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="Margin" Value="0,0,5,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border Name="Border" 
+                                Background="White"
+                                BorderThickness="0,0,0,2"
+                                BorderBrush="Transparent"
+                                CornerRadius="4,4,0,0">
+                                <Border.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </Border.RenderTransform>
+                                <ContentPresenter x:Name="ContentSite"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          ContentSource="Header"
+                                          Margin="{TemplateBinding Padding}"/>
+                            </Border>
+
+                            <Border Name="RippleEffect" 
+                                Background="#20FFFFFF"
+                                Opacity="0"
+                                CornerRadius="4,4,0,0"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="Border" 
+                                                     Storyboard.TargetProperty="Background.Color"
+                                                     To="{StaticResource TabHoverColor}"
+                                                     Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0.9"
+                                                     Duration="0:0:0.1"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="Border" 
+                                                     Storyboard.TargetProperty="Background.Color"
+                                                     To="{StaticResource TabNormalColor}"
+                                                     Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+
+                            <Trigger Property="IsSelected" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="Border" 
+                                                     Storyboard.TargetProperty="Background.Color"
+                                                     To="{StaticResource TabSelectedColor}"
+                                                     Duration="0:0:0.3"/>
+                                            <ColorAnimation Storyboard.TargetName="Border" 
+                                                     Storyboard.TargetProperty="BorderBrush.Color"
+                                                     To="{StaticResource TabSelectedColor}"
+                                                     Duration="0:0:0.3"/>
+                                            <ThicknessAnimation Storyboard.TargetName="Border" 
+                                                       Storyboard.TargetProperty="BorderThickness"
+                                                       To="0,0,0,3"
+                                                       Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+
+                            <EventTrigger RoutedEvent="PreviewMouseDown">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RippleEffect"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="1"
+                                                 Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="RippleEffect"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 BeginTime="0:0:0.1"
+                                                 Duration="0:0:0.3"/>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                 Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                 To="0.98"
+                                                 Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                 Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                 To="0.98"
+                                                 Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TabControl}" x:Key="ModernTabControl">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="TabStripPlacement" Value="Top"/>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ModernAnimatedTabItem}"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#ebebeb" Margin="130 0 0 15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TabControl Margin="15 130 0 0" 
+                        Style="{StaticResource ModernTabControl}"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        >
+            <TabItem Header="Все клиенты"/>
+            <TabItem Header="Leads"/>
+            <TabItem Header="Ongoing"/>
+            <TabItem Header="Payment Back"/>
+            <TabItem Header="Closed"/>
+        </TabControl>
+        <TextBlock Grid.Row="0" 
+                   VerticalAlignment="Top" 
+                   Margin="25 25 0 0"
+                   FontSize="36"
+                   Style="{StaticResource MaterialDesignBody1TextBlock}"
+                   Text="Клиенты"
+                   FontWeight="Medium">
+
+        </TextBlock>
+        <TextBlock Grid.Row="0" 
+                VerticalAlignment="Top" 
+                Margin="25 70 0 0"
+                FontSize="26"
+                Style="{StaticResource MaterialDesignBody1TextBlock}"
+                Text="Просматривайте всю информацию о наших клиентах!"
+                FontWeight="Normal">
+        </TextBlock>
+        <Button 
+                Style="{StaticResource MaterialDesignRaisedButton}" 
+                x:Name="AddNewClientBtn"
+                Grid.Column="1"
+                VerticalAlignment="Top"
+                Width="150"
+                Margin="645 50 0 0"
+                Padding="12,6"
+                HorizontalContentAlignment="Center" >
+
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon 
+                                        Kind="Add" 
+                                        Width="20"
+                                        Height="20"
+                                        Margin="0,0,8,0"/>
+                <TextBlock Text="Добавить" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button  x:Name="ExportBtn"
+                 Style="{StaticResource MaterialDesignFlatButton}" 
+                 Grid.Column="1"
+                 VerticalAlignment="Top"
+                 Width="150"
+                 Margin="300 50 0 0"
+                 Padding="12,6"
+                 HorizontalContentAlignment="Center" >
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon 
+                                Kind="Export" 
+                                Width="20"
+                                Height="20"
+                                Margin="0,0,8,0"/>
+                <TextBlock Text="Отчет" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <DockPanel Grid.Row="0"
+                   Width="500"
+                   Height="40"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="5,80,0,0"
+                   LastChildFill="True">
+
+            <materialDesign:PackIcon 
+                            Kind="Magnify"
+                            Width="25"
+                            Height="25"
+                            Margin="10,0,0,0"
+                            DockPanel.Dock="Left"
+                            VerticalAlignment="Center"
+                            Foreground="#999999"/>
+
+            <TextBox x:Name="SearchClientTbx"
+                     FontSize="14"
+                     Padding="30,0,10,0"
+                     Foreground="#333333"
+                     Background="#FAFAFA"
+                     BorderThickness="0"
+                     VerticalContentAlignment="Center"
+                     GotFocus="SearchClientTbx_GotFocus"
+                     LostFocus="SearchClientTbx_LostFocus"
+                     MouseEnter="SearchClientTbx_MouseEnter"
+                     MouseLeave="SearchClientTbx_MouseLeave"
+                     TextChanged="SearchClientTbx_TextChanged"
+                     Loaded="SearchClientTbx_Loaded">
+                <TextBox.Style>
+                    <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Grid>
+                                        <!-- Внешняя обводка с тенью -->
+                                        <Border x:Name="outerBorder"
+                                                    CornerRadius="20"
+                                                    Background="White"
+                                                    BorderThickness="1"
+                                                    BorderBrush="#E0E0E0"
+                                                    Padding="1">
+                                            <Border.Effect>
+                                                <DropShadowEffect 
+                                            x:Name="shadowEffect"
+                                            ShadowDepth="0"
+                                            BlurRadius="5"
+                                            Opacity="0"
+                                            Color="#40000000"/>
+                                            </Border.Effect>
+                                        </Border>
+
+                                        <!-- Внутренняя часть -->
+                                        <Border x:Name="innerBorder"
+                                                CornerRadius="20"
+                                                Background="{TemplateBinding Background}"
+                                                BorderThickness="0">
+                                            <ScrollViewer x:Name="PART_ContentHost"
+                                                        Margin="5,0"/>
+                                        </Border>
+                                    </Grid>
+
+                                    <ControlTemplate.Triggers>
+                                        <!-- Анимация при фокусе -->
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <!-- Тень -->
+                                                        <DoubleAnimation
+                                                    Storyboard.TargetName="shadowEffect"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0.2"
+                                                    Duration="0:0:0.3"/>
+                                                        <!-- Цвет обводки -->
+                                                        <ColorAnimation
+                                                    Storyboard.TargetName="outerBorder"
+                                                    Storyboard.TargetProperty="BorderBrush.Color"
+                                                    To="#6699FF"
+                                                    Duration="0:0:0.2"/>
+                                                        <!-- Фон -->
+                                                        <ColorAnimation
+                                                    Storyboard.TargetName="innerBorder"
+                                                    Storyboard.TargetProperty="Background.Color"
+                                                    To="#FFFFFF"
+                                                    Duration="0:0:0.3"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation
+                                                    Storyboard.TargetName="shadowEffect"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.4"/>
+                                                        <ColorAnimation
+                                                    Storyboard.TargetName="outerBorder"
+                                                    Storyboard.TargetProperty="BorderBrush.Color"
+                                                    To="#E0E0E0"
+                                                    Duration="0:0:0.3"/>
+                                                        <ColorAnimation
+                                                    Storyboard.TargetName="innerBorder"
+                                                    Storyboard.TargetProperty="Background.Color"
+                                                    To="#FAFAFA"
+                                                    Duration="0:0:0.4"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+        </DockPanel>
+        <ListView x:Name="ClientsLV"
+                  FontSize="26"
+                  Grid.Column="0"
+                  ListBoxItem.Selected="ClientsLV_Selected"
+                  ListBoxItem.Unselected="ClientsLV_Unselected"
+                  Grid.Row="0"
+                  Grid.RowSpan="3"
+                  Grid.ColumnSpan="2"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Left"
+                  Width="1650"
+                  Margin="50 250 0 0"
+                  Height="800"
+                  BorderThickness="0"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+            <!-- Стиль для списка -->
+            <ListView.Style>
+                <Style TargetType="ListView">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListView">
+                                <Border CornerRadius="8"
+                                Background="White"
+                                >
+                                    <ScrollViewer>
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.Style>
+
+            <!-- Шаблон элемента -->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border CornerRadius="8"
+                Margin="8 4"
+                Padding="16"
+                Background="White"
+                x:Name="ItemBorder">
+
+                        <!-- Трансформации для анимаций -->
+                        <Border.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Border.RenderTransform>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <!-- Анимация фона при наведении -->
+                                        <ColorAnimation Duration="0:0:0.2"
+                                            Storyboard.TargetName="ItemBorder"
+                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                            To="#F5F5F5"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="IsPressed">
+                                    <Storyboard>
+                                        <!-- Анимация масштаба при нажатии -->
+                                        <DoubleAnimation Duration="0:0:0.1"
+                                             Storyboard.TargetName="ItemBorder"
+                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                             To="0.98"/>
+                                        <DoubleAnimation Duration="0:0:0.1"
+                                             Storyboard.TargetName="ItemBorder"
+                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                             To="0.98"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <!-- Остальная разметка без изменений -->
+                        <Grid Width="1050">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Изображение -->
+                            <Image Source="{Binding PhotoPath}"
+                                   Width="100"
+                                   Height="100"
+                                   Grid.Column="0"
+                                   Margin="0 0 16 0"
+                                   Stretch="UniformToFill"/>
+
+                            <!-- Основной контент -->
+                            <StackPanel Grid.Column="1" Margin="8 0">
+                                <!-- Заголовок -->
+                                <TextBlock Text="{Binding Name}"
+                                           FontSize="28"
+                                           FontWeight="Bold"
+                                           FontFamily="Gabriola"
+                                           Foreground="#212121"/>
+
+                                <!-- Дополнительная информация -->
+                                <StackPanel Orientation="Horizontal" Margin="0 8 0 0">
+                                    <TextBlock Text="{Binding Position}"
+                                               FontSize="24"
+                                               FontFamily="Gabriola"
+                                               Foreground="#757575"
+                                               Margin="0 0 16 0"/>
+                                    <TextBlock Text="|"
+                                               FontSize="24"
+                                               Margin="0 0 16 0"/>
+                                    <TextBlock Text="{Binding Department}"
+                                               FontSize="24"
+                                               FontFamily="Gabriola"
+                                               Foreground="#757575"/>
+                                </StackPanel>
+
+                                <!-- Описание -->
+                                <TextBlock Text="{Binding Description}"
+                                           FontSize="22"
+                                           FontFamily="Gabriola"
+                                           TextWrapping="Wrap"
+                                           Margin="0 8 0 0"
+                                           MaxWidth="600"/>
+                            </StackPanel>
+
+                            <!-- Кнопки действий -->
+                            <StackPanel Grid.Column="2"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Right">
+                                <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                        Width="48"
+                                        Height="48"
+                                        Margin="8"
+                                        ToolTip="Удалить">
+                                    <materialDesign:PackIcon Kind="Delete" 
+                                            Width="24"
+                                            Height="24"/>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Ripple-эффект -->
+                        <materialDesign:RippleAssist.Feedback>
+                            <SolidColorBrush Color="#2000CC76"/>
+                        </materialDesign:RippleAssist.Feedback>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <!-- Упрощенный стиль ListViewItem -->
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="ContainerBorder" 
+                                        Background="Transparent"
+                                        CornerRadius="8"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    </Border.RenderTransform>
+                                    <ContentPresenter/>
+
+                                    <!-- Ripple-эффект -->
+                                    <materialDesign:RippleAssist.Feedback>
+                                        <SolidColorBrush Color="#2000CC76"/>
+                                    </materialDesign:RippleAssist.Feedback>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <!-- Анимация при наведении -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Duration="0:0:0.2"
+                                                        Storyboard.TargetName="ContainerBorder"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="#F5F5F5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Duration="0:0:0.2"
+                                                        Storyboard.TargetName="ContainerBorder"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="Transparent"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
     </Grid>
 </Page>

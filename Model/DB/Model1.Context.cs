@@ -13,10 +13,10 @@ namespace GetMoreFit.Model.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FitnessGetMoreFitEntities : DbContext
+    public partial class FitnessGetMoreFitEntities1 : DbContext
     {
-        public FitnessGetMoreFitEntities()
-            : base("name=FitnessGetMoreFitEntities")
+        public FitnessGetMoreFitEntities1()
+            : base("name=FitnessGetMoreFitEntities1")
         {
         }
     
