@@ -169,7 +169,7 @@
         </Style>
     </Page.Resources>
 
-    <Grid Background="#ebebeb" Margin="130 0 0 15">
+    <Grid Background="#ebebeb" Margin="130 0 0 0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -182,8 +182,7 @@
         <TabControl Margin="15 130 0 0" 
                         Style="{StaticResource ModernTabControl}"
                         Grid.Row="0"
-                        Grid.ColumnSpan="2"
-                        >
+                        Grid.ColumnSpan="2">
             <TabItem Header="Все клиенты"/>
             <TabItem Header="Leads"/>
             <TabItem Header="Ongoing"/>
@@ -215,7 +214,7 @@
                 Width="150"
                 Margin="645 50 0 0"
                 Padding="12,6"
-                HorizontalContentAlignment="Center" >
+                HorizontalContentAlignment="Center" Click="AddNewClientBtn_Click" >
 
             <StackPanel Orientation="Horizontal">
                 <materialDesign:PackIcon 
@@ -364,10 +363,9 @@
             </TextBox>
         </DockPanel>
         <ListView x:Name="ClientsLV"
+                  MouseDoubleClick="ClientsLV_MouseDoubleClick"
                   FontSize="26"
                   Grid.Column="0"
-                  ListBoxItem.Selected="ClientsLV_Selected"
-                  ListBoxItem.Unselected="ClientsLV_Unselected"
                   Grid.Row="0"
                   Grid.RowSpan="3"
                   Grid.ColumnSpan="2"
@@ -386,11 +384,16 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ListView">
                                 <Border CornerRadius="8"
-                                Background="White"
-                                >
+                                Background="White">
                                     <ScrollViewer>
                                         <ItemsPresenter/>
                                     </ScrollViewer>
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="3" 
+                                                  Opacity="0.2"
+                                                  BlurRadius="10"
+                                                  Color="Black"/>
+                                    </Border.Effect>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
@@ -402,12 +405,10 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border CornerRadius="8"
-                Margin="8 4"
-                Padding="16"
-                Background="White"
-                x:Name="ItemBorder">
-
-                        <!-- Трансформации для анимаций -->
+                    Margin="8 4"
+                    Padding="16"
+                    Background="White"
+                    x:Name="ItemBorder">
                         <Border.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Border.RenderTransform>
@@ -417,30 +418,15 @@
                                 <VisualState x:Name="Normal"/>
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
-                                        <!-- Анимация фона при наведении -->
                                         <ColorAnimation Duration="0:0:0.2"
-                                            Storyboard.TargetName="ItemBorder"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="#F5F5F5"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="IsPressed">
-                                    <Storyboard>
-                                        <!-- Анимация масштаба при нажатии -->
-                                        <DoubleAnimation Duration="0:0:0.1"
-                                             Storyboard.TargetName="ItemBorder"
-                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                             To="0.98"/>
-                                        <DoubleAnimation Duration="0:0:0.1"
-                                             Storyboard.TargetName="ItemBorder"
-                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                             To="0.98"/>
+                                    Storyboard.TargetName="ItemBorder"
+                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                    To="#F5F5F5"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <!-- Остальная разметка без изменений -->
                         <Grid Width="1050">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -448,65 +434,91 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <!-- Изображение -->
+                            <!-- Картинка слева -->
                             <Image Source="{Binding PhotoPath}"
-                                   Width="100"
-                                   Height="100"
-                                   Grid.Column="0"
-                                   Margin="0 0 16 0"
-                                   Stretch="UniformToFill"/>
+                           Width="80"
+                           Height="80"
+                           Grid.Column="0"
+                           Margin="0 0 16 0"
+                           Stretch="UniformToFill"/>
 
-                            <!-- Основной контент -->
+                            <!-- Основная информация -->
                             <StackPanel Grid.Column="1" Margin="8 0">
-                                <!-- Заголовок -->
-                                <TextBlock Text="{Binding Name}"
-                                           FontSize="28"
-                                           FontWeight="Bold"
-                                           FontFamily="Gabriola"
-                                           Foreground="#212121"/>
-
-                                <!-- Дополнительная информация -->
-                                <StackPanel Orientation="Horizontal" Margin="0 8 0 0">
-                                    <TextBlock Text="{Binding Position}"
-                                               FontSize="24"
-                                               FontFamily="Gabriola"
-                                               Foreground="#757575"
-                                               Margin="0 0 16 0"/>
-                                    <TextBlock Text="|"
-                                               FontSize="24"
-                                               Margin="0 0 16 0"/>
-                                    <TextBlock Text="{Binding Department}"
-                                               FontSize="24"
-                                               FontFamily="Gabriola"
-                                               Foreground="#757575"/>
+                                <!-- Имя и фамилия -->
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}"
+                                   FontSize="24"
+                                   FontWeight="Medium"
+                                   Foreground="#212121"/>
+                                    <TextBlock Text="{Binding LastName}"
+                                   FontSize="24"
+                                   FontWeight="Medium"
+                                   Margin="5 0 0 0"
+                                   Foreground="#212121"/>
                                 </StackPanel>
 
-                                <!-- Описание -->
-                                <TextBlock Text="{Binding Description}"
-                                           FontSize="22"
-                                           FontFamily="Gabriola"
-                                           TextWrapping="Wrap"
-                                           Margin="0 8 0 0"
-                                           MaxWidth="600"/>
+                                <!-- Рост и вес -->
+                                <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                    <TextBlock Text="Рост: "
+                                   FontSize="22"
+                                   Foreground="Black"/>
+                                    <TextBlock Text="{Binding Height}"
+                                   FontSize="22"
+                                   Foreground="Black"/>
+                                    <TextBlock Text=" см | "
+                                   FontSize="22"
+                                   Foreground="Black"
+                                   Margin="5 0 5 0"/>
+                                    <TextBlock Text="Вес: "
+                                   FontSize="22"
+                                   Foreground="Black"/>
+                                    <TextBlock Text="{Binding Weight}"
+                                   FontSize="22"
+                                   Foreground="Black"/>
+                                    <TextBlock Text=" кг"
+                                   FontSize="22"
+                                   Foreground="Black"
+                                   Margin="0 0 5 0"/>
+                                </StackPanel>
+
+                                <!-- Возраст -->
+                                <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                    <TextBlock Text="Возраст: "
+                                   FontSize="22"
+                                   Foreground="Black"/>
+                                    <TextBlock Text="{Binding Age}"
+                                   FontSize="22"
+                                   Foreground="Black"/>
+                                </StackPanel>
+
+                                <!-- Цель -->
+                                <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                    <TextBlock Text="Цель: "
+                                   FontSize="22"
+                                   Foreground="Black"/>
+                                    <TextBlock Text="{Binding Goal}"
+                                   FontSize="22"
+                                   Foreground="Black"
+                                   TextWrapping="Wrap"/>
+                                </StackPanel>
                             </StackPanel>
 
-                            <!-- Кнопки действий -->
+                            <!-- Кнопка удаления справа -->
                             <StackPanel Grid.Column="2"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Right">
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right">
                                 <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                        Width="48"
-                                        Height="48"
-                                        Margin="8"
-                                        ToolTip="Удалить">
+                                Width="48"
+                                Height="48"
+                                Margin="8"
+                                ToolTip="Удалить">
                                     <materialDesign:PackIcon Kind="Delete" 
-                                            Width="24"
-                                            Height="24"/>
+                                    Width="24"
+                                    Height="24"/>
                                 </Button>
                             </StackPanel>
                         </Grid>
 
-                        <!-- Ripple-эффект -->
                         <materialDesign:RippleAssist.Feedback>
                             <SolidColorBrush Color="#2000CC76"/>
                         </materialDesign:RippleAssist.Feedback>
@@ -514,7 +526,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
 
-            <!-- Упрощенный стиль ListViewItem -->
+            <!-- Стиль элементов списка -->
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -523,30 +535,28 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
                                 <Border x:Name="ContainerBorder" 
-                                        Background="Transparent"
-                                        CornerRadius="8"
-                                        RenderTransformOrigin="0.5,0.5">
+                                Background="Transparent"
+                                CornerRadius="8"
+                                RenderTransformOrigin="0.5,0.5">
                                     <Border.RenderTransform>
                                         <ScaleTransform ScaleX="1" ScaleY="1"/>
                                     </Border.RenderTransform>
                                     <ContentPresenter/>
 
-                                    <!-- Ripple-эффект -->
                                     <materialDesign:RippleAssist.Feedback>
                                         <SolidColorBrush Color="#2000CC76"/>
                                     </materialDesign:RippleAssist.Feedback>
                                 </Border>
 
                                 <ControlTemplate.Triggers>
-                                    <!-- Анимация при наведении -->
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Trigger.EnterActions>
                                             <BeginStoryboard>
                                                 <Storyboard>
                                                     <ColorAnimation Duration="0:0:0.2"
-                                                        Storyboard.TargetName="ContainerBorder"
-                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#F5F5F5"/>
+                                                Storyboard.TargetName="ContainerBorder"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="#F5F5F5"/>
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </Trigger.EnterActions>
@@ -554,9 +564,9 @@
                                             <BeginStoryboard>
                                                 <Storyboard>
                                                     <ColorAnimation Duration="0:0:0.2"
-                                                        Storyboard.TargetName="ContainerBorder"
-                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="Transparent"/>
+                                                Storyboard.TargetName="ContainerBorder"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="Transparent"/>
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </Trigger.ExitActions>

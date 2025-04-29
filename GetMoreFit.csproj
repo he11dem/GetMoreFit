@@ -289,6 +289,12 @@
     <Compile Include="Pages\AdminHomePage.xaml.cs">
       <DependentUpon>AdminHomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EditClientPage.xaml.cs">
+      <DependentUpon>EditClientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditTrainersPage.xaml.cs">
+      <DependentUpon>EditTrainersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ListClientsPage.xaml.cs">
       <DependentUpon>ListClientsPage.xaml</DependentUpon>
     </Compile>
@@ -325,6 +331,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AuthorizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditClientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditTrainersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -415,10 +429,10 @@
       <Version>6.2.0</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignColors">
-      <Version>5.2.1</Version>
+      <Version>3.0.0</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignThemes">
-      <Version>5.2.1</Version>
+      <Version>3.2.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

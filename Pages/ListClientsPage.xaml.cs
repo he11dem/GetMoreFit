@@ -34,10 +34,7 @@ namespace GetMoreFit.Pages
             this.DataContext = this;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new AddNewClientPage());
-        }
+        
         private void SearchClientTbx_Loaded(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(SearchClientTbx.Text))
@@ -115,6 +112,20 @@ namespace GetMoreFit.Pages
                 // Возврат к исходному масштабу
                 var scale = new ScaleTransform(1, 1);
                 border.RenderTransform = scale;
+            }
+        }
+
+        private void AddNewClientBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddNewClientPage());
+        }
+
+        private void ClientsLV_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ClientsLV.SelectedItem is Clients clients)
+            {
+                clients = ClientsLV.SelectedItem as Clients;
+                NavigationService.Navigate(new EditClientPage(clients));
             }
         }
     }

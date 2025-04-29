@@ -270,69 +270,69 @@
                         Content="Посмотреть всех >>"
                         Margin="0,38,10,0" Click="ClientBtn_Click" ></Button>
                 <WrapPanel Grid.ColumnSpan="3" 
-           HorizontalAlignment="Center" 
-           VerticalAlignment="Center" 
-           Height="290" 
-           Width="500" 
-           Margin="0 55 0 0">
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" 
+                           Height="290" 
+                           Width="500" 
+                           Margin="0 55 0 0">
                     <Border CornerRadius="10" 
-            Padding="10" 
-            Style="{StaticResource TrainerCardStyle}"
-            Margin="0 10 10 10" 
-            BorderBrush="#ebebeb"
-            Height="250"
-            Width="150">
+                            Padding="10" 
+                            Style="{StaticResource TrainerCardStyle}"
+                            Margin="0 10 10 10" 
+                            BorderBrush="#ebebeb"
+                            Height="250"
+                            Width="150">
                         <Border.Background>
                             <ImageBrush ImageSource="/GetMoreFit;component/Resources/Images/caruselone.jpg" Stretch="UniformToFill"/>
                         </Border.Background>
                         <StackPanel>
                             <TextBlock Text="Альмир Загиров" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Center" 
-                       FontWeight="Bold" 
-                       FontSize="14" 
-                       Foreground="#ebebeb"
-                       Style="{StaticResource ModernTextWithShadow}"/>
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" 
+                                       FontWeight="Bold" 
+                                       FontSize="14" 
+                                       Foreground="#ebebeb"
+                                       Style="{StaticResource ModernTextWithShadow}"/>
                         </StackPanel>
                     </Border>
                     <Border CornerRadius="10" 
-            Padding="10" 
-            Style="{StaticResource TrainerCardStyle}"
-            Margin="0 10 10 10" 
-            BorderBrush="#ebebeb"
-            Height="250"
-            Width="150">
+                            Padding="10" 
+                            Style="{StaticResource TrainerCardStyle}"
+                            Margin="0 10 10 10" 
+                            BorderBrush="#ebebeb"
+                            Height="250"
+                            Width="150">
                         <Border.Background>
                             <ImageBrush ImageSource="/GetMoreFit;component/Resources/Images/caruselone.jpg" Stretch="UniformToFill"/>
                         </Border.Background>
                         <StackPanel>
                             <TextBlock Text="Альмир Загиров" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Center" 
-                       FontWeight="Bold" 
-                       FontSize="15" 
-                       Foreground="#ebebeb"
-                       Style="{StaticResource ModernTextWithShadow}"/>
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" 
+                                       FontWeight="Bold" 
+                                       FontSize="15" 
+                                       Foreground="#ebebeb"
+                                       Style="{StaticResource ModernTextWithShadow}"/>
                         </StackPanel>
                     </Border>
                     <Border CornerRadius="10" 
-            Padding="10" 
-            Style="{StaticResource TrainerCardStyle}"
-            Margin="0 10 10 10" 
-            BorderBrush="#ebebeb"
-            Height="250"
-            Width="150">
+                            Padding="10" 
+                            Style="{StaticResource TrainerCardStyle}"
+                            Margin="0 10 10 10" 
+                            BorderBrush="#ebebeb"
+                            Height="250"
+                            Width="150">
                         <Border.Background>
                             <ImageBrush ImageSource="/GetMoreFit;component/Resources/Images/caruselone.jpg" Stretch="UniformToFill"/>
                         </Border.Background>
                         <StackPanel>
                             <TextBlock Text="Альмир Загиров" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Center" 
-                       FontWeight="Bold" 
-                       FontSize="15" 
-                       Foreground="#ebebeb"
-                       Style="{StaticResource ModernTextWithShadow}"/>
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" 
+                                       FontWeight="Bold" 
+                                       FontSize="15" 
+                                       Foreground="#ebebeb"
+                                       Style="{StaticResource ModernTextWithShadow}"/>
                         </StackPanel>
                     </Border>
                 </WrapPanel>
